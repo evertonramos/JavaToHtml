@@ -24,22 +24,16 @@
 package html5.br.com.everton;
 
 /**
- * The div tag defines a division or a section in an HTML document. The div tag
- * is used to group block-elements to format them with CSS.
+ * The html tag tells the browser that this is an HTML document. The html tag
+ * represents the root of an HTML document. The html tag is the container for
+ * all other HTML elements (except for the <!DOCTYPE> tag).
  *
  * @author evertonramos
  */
-public class Html5Div extends Html5 {
+public class Html extends Html5 {
 
-    public Html5Div() {
-        super("div");
+    public Html() {
+        super("html");
     }
 
-    public Html5Div(String content) {
-        super("div", content);
-    }
-    
-    public Html5Div(Html5 html5) {
-        super("div", html5);
-    }
 }

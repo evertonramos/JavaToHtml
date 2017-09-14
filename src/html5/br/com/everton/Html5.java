@@ -49,12 +49,12 @@ public abstract class Html5 {
     public Html5(String tagName) {
         setTagName(tagName);
     }
-    
+
     public Html5(String tagName, String content) {
         setTagName(tagName);
         append(content);
     }
-    
+
     public Html5(String tagName, Html5 content) {
         setTagName(tagName);
         append(content);
@@ -65,7 +65,7 @@ public abstract class Html5 {
      * style sheet)
      */
     private final List<String> classAttribute = new ArrayList<>();
-    
+
     /**
      * add class name
      *
@@ -74,14 +74,14 @@ public abstract class Html5 {
     public void addClassName(String name) {
         classAttribute.add(name);
     }
-    
+
     /**
      * add class names
-     * 
+     *
      * @param names String[]{"name1", "name2", "nameN"}
      */
     public void addClassName(String[] names) {
-        for(int i = 0; names.length > i; i++) {
+        for (int i = 0; names.length > i; i++) {
             addClassName(names[i]);
         }
     }
@@ -99,7 +99,7 @@ public abstract class Html5 {
      * Used to store custom data private to the page or application
      */
     private final Map<String, String> dataAttribute = new HashMap<>();
-    
+
     /**
      * add data attribute
      *
@@ -130,7 +130,7 @@ public abstract class Html5 {
      * Specifies that an element is not yet, or is no longer, relevant
      */
     private boolean hiddenAttribute = false;
-    
+
     /**
      * get hidden attribute value
      *
@@ -153,7 +153,7 @@ public abstract class Html5 {
      * Specifies a unique id for an element
      */
     private String idAttribute = "";
-    
+
     /**
      * get id attribute value
      *
@@ -176,7 +176,7 @@ public abstract class Html5 {
      * Specifies an inline CSS style for an element
      */
     private final Map<String, String> styleAttribute = new HashMap<>();
-    
+
     /**
      * add style
      *
@@ -266,20 +266,48 @@ public abstract class Html5 {
         return sb.toString().trim();
     }
 
-    public final void append(Html5 html) {
-        sbContent.append(html);
+    public final void comment(String comment) {
+        sbContent.append(new Comment(comment));
     }
 
     public final void br() {
-        sbContent.append(new Html5Br());
+        sbContent.append(new Br());
     }
 
-    public final void comment(String comment) {
-        sbContent.append(new Html5Comment(comment));
+    public final void h1(String heading) {
+        sbContent.append(new H1(heading));
+    }
+
+    public final void h2(String heading) {
+        sbContent.append(new H2(heading));
+    }
+
+    public final void h3(String heading) {
+        sbContent.append(new H3(heading));
+    }
+
+    public final void h4(String heading) {
+        sbContent.append(new H4(heading));
+    }
+
+    public final void h5(String heading) {
+        sbContent.append(new H5(heading));
+    }
+
+    public final void h6(String heading) {
+        sbContent.append(new H6(heading));
+    }
+
+    public final void hr() {
+        sbContent.append(new Hr());
     }
 
     public final void append(String content) {
         sbContent.append(content);
+    }
+
+    public final void append(Html5 html) {
+        sbContent.append(html);
     }
 
     public final String getHtml5() {
@@ -298,6 +326,11 @@ public abstract class Html5 {
                 break;
             case "br":
                 // br
+                html5.append(">");
+                html5.append(sbContent);
+                break;
+            case "hr":
+                // hr
                 html5.append(">");
                 html5.append(sbContent);
                 break;

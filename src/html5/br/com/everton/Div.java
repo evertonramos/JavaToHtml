@@ -24,15 +24,22 @@
 package html5.br.com.everton;
 
 /**
- * The br tag inserts a single line break. The br tag is an empty tag which
- * means that it has no end tag.
+ * The div tag defines a division or a section in an HTML document. The div tag
+ * is used to group block-elements to format them with CSS.
  *
  * @author evertonramos
  */
-public class Html5Br extends Html5 {
+public class Div extends Html5 {
 
-    public Html5Br() {
-        super("br");
+    public Div() {
+        super("div");
     }
 
+    public Div(String content) {
+        super("div", content);
+    }
+    
+    public Div(Html5 html5) {
+        super("div", html5);
+    }
 }

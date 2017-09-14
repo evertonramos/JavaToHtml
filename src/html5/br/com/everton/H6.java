@@ -24,22 +24,23 @@
 package html5.br.com.everton;
 
 /**
- * The section tag defines sections in a document, such as chapters, headers,
- * footers, or any other sections of the document.
+ * The h1 to h6 tags are used to define HTML headings. h1 defines the most
+ * important heading. h6 defines the least important heading.
  *
  * @author evertonramos
  */
-public class Html5Section extends Html5 {
+public class H6 extends Html5 {
 
-    public Html5Section() {
-        super("section");
+    public H6() {
+        super("h6");
     }
-    
-    public Html5Section(String content) {
-        super("section", content);
+
+    public H6(String content) {
+        super("h6", content);
     }
-    
-    public Html5Section(Html5 html5) {
-        super("section", html5);
+
+    public H6(Html5 html5) {
+        super("h6", html5);
     }
+
 }

@@ -29,18 +29,18 @@ package html5.br.com.everton;
  *
  * @author evertonramos
  */
-public class Html5H6 extends Html5 {
+public class H2 extends Html5 {
 
-    public Html5H6() {
-        super("h6");
+    public H2() {
+        super("h2");
     }
 
-    public Html5H6(String content) {
-        super("h6", content);
+    public H2(String content) {
+        super("h2", content);
     }
 
-    public Html5H6(Html5 html5) {
-        super("h6", html5);
+    public H2(Html5 html5) {
+        super("h2", html5);
     }
 
 }

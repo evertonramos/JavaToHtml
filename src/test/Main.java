@@ -23,10 +23,12 @@
  */
 package test;
 
-import html5.br.com.everton.Html5Br;
-import html5.br.com.everton.Html5Div;
-import html5.br.com.everton.Html5H1;
-import html5.br.com.everton.Html5Section;
+import html5.br.com.everton.Html;
+import html5.br.com.everton.Br;
+import html5.br.com.everton.Div;
+import html5.br.com.everton.H1;
+import html5.br.com.everton.Hr;
+import html5.br.com.everton.Section;
 
 /**
  *
@@ -34,8 +36,10 @@ import html5.br.com.everton.Html5Section;
  */
 public class Main {
     public static void main(String [] args) {
+        Html html = new Html();
+        
         // <section>
-        Html5Section section = new Html5Section();
+        Section section = new Section();
         
         // set id
         section.setIdAttribute("id_section");
@@ -60,27 +64,25 @@ public class Main {
         section.br();
         section.comment("comentário no section");
         
-        System.out.println(section);
-        
         // <div>
-        Html5Div div = new Html5Div("tttttt");
+        Div div = new Div("tttttt");
         
         div.setIdAttribute("id_div");
         div.append("content");
         div.br();
         div.comment("comment test");
         
-        System.out.println(div);
+        section.append(div);
         
         // <br>
-        Html5Br br = new Html5Br();
+        Br br = new Br();
         
         br.setIdAttribute("id_br");
         br.comment("comentário");
         System.out.println(br);
      
         // <h1>
-        Html5H1 h1 = new Html5H1("teste do H1");
+        H1 h1 = new H1("teste do H1");
         h1.addClassName("classH1");
         h1.addClassName(new String[]{"valor1", "valor2"});
         h1.addStyle("color", "red");
@@ -88,5 +90,14 @@ public class Main {
         h1.comment("comentário do h1");
         
         System.out.println(h1);
+        
+        // <hr>
+        Hr hr = new Hr();
+        
+        html.append(section);
+        
+        System.out.println(html);
+        
+        
     }
 }

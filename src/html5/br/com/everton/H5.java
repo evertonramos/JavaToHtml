@@ -24,21 +24,23 @@
 package html5.br.com.everton;
 
 /**
- * The comment tag is used to insert comments in the source code. Comments are
- * not displayed in the browsers. You can use comments to explain your code,
- * which can help you when you edit the source code at a later date. This is
- * especially useful if you have a lot of code.
+ * The h1 to h6 tags are used to define HTML headings. h1 defines the most
+ * important heading. h6 defines the least important heading.
  *
  * @author evertonramos
  */
-public class Html5Comment extends Html5 {
+public class H5 extends Html5 {
 
-    public Html5Comment() {
-        super("!--");
+    public H5() {
+        super("h5");
     }
-    
-    public Html5Comment(String comment) {
-        super("!--", comment);
+
+    public H5(String content) {
+        super("h5", content);
+    }
+
+    public H5(Html5 html5) {
+        super("h5", html5);
     }
 
 }
