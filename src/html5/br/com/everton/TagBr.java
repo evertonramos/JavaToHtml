@@ -24,24 +24,15 @@
 package html5.br.com.everton;
 
 /**
+ * The br tag inserts a single line break. The br tag is an empty tag which
+ * means that it has no end tag.
  *
  * @author evertonramos
  */
-public class Section extends Html5 {
-    
-    
-    @Override
-    public String toString() {
-        
-        if(!getAttributes().isEmpty()) {
-            sbContent.append("<section ").append(getAttributes()).append(">");
-        } else {
-            sbContent.append("<section>");
-        }
-        
-        
-        sbContent.append("</section>");
-        
-        return sbContent.toString();
+public class TagBr extends Html5 {
+
+    public TagBr() {
+        super("br");
     }
+
 }

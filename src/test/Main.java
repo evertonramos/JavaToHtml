@@ -23,7 +23,9 @@
  */
 package test;
 
-import html5.br.com.everton.Section;
+import html5.br.com.everton.TagBr;
+import html5.br.com.everton.TagDiv;
+import html5.br.com.everton.TagSection;
 
 /**
  *
@@ -31,7 +33,8 @@ import html5.br.com.everton.Section;
  */
 public class Main {
     public static void main(String [] args) {
-        Section section = new Section();
+        // <section>
+        TagSection section = new TagSection();
         
         // set id
         section.setIdAttribute("id_section");
@@ -51,8 +54,27 @@ public class Main {
         section.addDataAttribute("animal-type", "bird");
         section.addDataAttribute("animal-color", "orange");
         
-        
+        // content
+        section.append("section content");
         
         System.out.println(section);
+        
+        // <div>
+        TagDiv div = new TagDiv();
+        
+        div.setIdAttribute("id_div");
+        div.append("content");
+        div.appendBr();
+        div.appendComment("comment test");
+        
+        System.out.println(div);
+        
+        // <br>
+        TagBr br = new TagBr();
+        
+        br.setIdAttribute("id_br");
+        br.appendComment("comentário");
+        System.out.println(br);
+        
     }
 }

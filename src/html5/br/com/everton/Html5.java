@@ -29,23 +29,37 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * HTML attributes give elements meaning and context.
  *
  * @author evertonramos
  */
 public abstract class Html5 {
+
+    private final StringBuilder sbContent = new StringBuilder();
+    private String tagName;
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    private void setTagName(String tagName) {
+        this.tagName = tagName;
+    }
+
+    public Html5(String tagName) {
+        setTagName(tagName);
+    }
 
     /**
      * Specifies one or more classnames for an element (refers to a class in a
      * style sheet)
      */
     private final List<String> classAttribute = new ArrayList<>();
-    
+
     /**
      * Used to store custom data private to the page or application
      */
     private final Map<String, String> dataAttribute = new HashMap<>();
-    
-    
 
     /**
      * Specifies that an element is not yet, or is no longer, relevant
@@ -67,28 +81,39 @@ public abstract class Html5 {
      */
     private String titleAttribute = "";
 
-    StringBuilder sbContent = new StringBuilder();
-
+    /**
+     * add class name
+     *
+     * @param sClass class name
+     */
     public void addClassName(String sClass) {
         classAttribute.add(sClass);
     }
 
     /**
-     * get a string with class names separated by spaces
+     * get string with class names separated by spaces
      *
-     * @return String - "class1 class2 classN"
+     * @return something like: class1 class2 classN
      */
     private String getClassAttribute() {
         return String.join(" ", classAttribute);
     }
-    
+
+    /**
+     * add data attribute
+     *
+     * @param sAttribute attribute name
+     * @param sValue attribute value
+     */
     public void addDataAttribute(String sAttribute, String sValue) {
         dataAttribute.put("data-" + sAttribute, sValue);
     }
-    
+
     /**
-     * get a string with data attributes separated by spaces
-     * @return String - "data-attribute1='value' data-attribute2='value' data-attributeN='value'"
+     * get string with data attributes separated by spaces
+     *
+     * @return something like: data-attribute1='value' data-attribute2='value'
+     * data-attributeN='value'
      */
     private String getDataAttributes() {
         StringBuilder sb = new StringBuilder();
@@ -100,30 +125,56 @@ public abstract class Html5 {
         return sb.toString().trim();
     }
 
+    /**
+     * get hidden attribute value
+     *
+     * @return hidden attribute value
+     */
     public boolean isHiddenAttribute() {
         return hiddenAttribute;
     }
 
+    /**
+     * set hidden attribute value
+     *
+     * @param hiddenAttribute hidden attribute value
+     */
     public void setHiddenAttribute(boolean hiddenAttribute) {
         this.hiddenAttribute = hiddenAttribute;
     }
 
+    /**
+     * get id attribute value
+     *
+     * @return id attribute value
+     */
     public String getIdAttribute() {
         return idAttribute;
     }
 
+    /**
+     * set id attribute value
+     *
+     * @param idAttribute id attribute value
+     */
     public void setIdAttribute(String idAttribute) {
         this.idAttribute = idAttribute;
     }
 
+    /**
+     * add style
+     *
+     * @param sProperty property name
+     * @param sValue property value
+     */
     public void addStyle(String sProperty, String sValue) {
         styleAttribute.put(sProperty, sValue);
     }
 
     /**
-     * get a string with style properties separated by semicolons
+     * get string with style properties separated by semicolons
      *
-     * @return String - "property1:value;property2:value;propertyN:value;"
+     * @return something like: property1:value;property2:value;propertyN:value;
      */
     private String getStyleAttribute() {
         StringBuilder sb = new StringBuilder();
@@ -135,14 +186,29 @@ public abstract class Html5 {
         return sb.toString();
     }
 
+    /**
+     * get title attribute value
+     *
+     * @return title attribute value
+     */
     public String getTitleAttribute() {
         return titleAttribute;
     }
 
+    /**
+     * set title attribute value
+     *
+     * @param titleAttribute title attribute value
+     */
     public void setTitleAttribute(String titleAttribute) {
         this.titleAttribute = titleAttribute;
     }
 
+    /**
+     * get string with attributes
+     *
+     * @return something like: class='...' id='...' style='...' title='...'
+     */
     public String getAttributes() {
         StringBuilder sb = new StringBuilder();
 
@@ -150,9 +216,9 @@ public abstract class Html5 {
         if (!getClassAttribute().isEmpty()) {
             sb.append("class='").append(getClassAttribute()).append("' ");
         }
-        
+
         // data-*
-        if(!getDataAttributes().isEmpty()) {
+        if (!getDataAttributes().isEmpty()) {
             sb.append(getDataAttributes()).append(" ");
         }
 
@@ -179,12 +245,57 @@ public abstract class Html5 {
         return sb.toString().trim();
     }
 
-    public void append(String sContent) {
-        sbContent.append(sContent);
+    public StringBuilder append(Html5 html) {
+        return sbContent.append(html);
+    }
+
+    public StringBuilder appendBr() {
+        return sbContent.append(new TagBr());
+    }
+
+    public StringBuilder appendComment(String sComment) {
+        return sbContent.append(new TagComment(sComment));
+    }
+
+    public StringBuilder append(String s) {
+        return sbContent.append(s);
+    }
+
+    public StringBuilder append(StringBuilder sb) {
+        return sbContent.append(sb);
+    }
+
+    public String getHtml5() {
+        StringBuilder html5 = new StringBuilder();
+
+        html5.append("<");
+        html5.append(getTagName());
+        html5.append(getAttributes().isEmpty() ? "" : (" " + getAttributes()));
+
+        switch (getTagName()) {
+            case "!--":
+                // comment
+                html5.append(">");
+                html5.append(sbContent);
+                html5.append("-->");
+                break;
+            case "br":
+                // br
+                html5.append(">");
+                html5.append(sbContent);
+                break;
+            default:
+                html5.append(">");
+                html5.append(sbContent);
+                html5.append("</").append(getTagName()).append(">");
+                break;
+        }
+
+        return html5.toString();
     }
 
     @Override
     public String toString() {
-        return sbContent.toString();
+        return getHtml5();
     }
 }
