@@ -74,6 +74,17 @@ public abstract class Html5 {
     public void addClassName(String name) {
         classAttribute.add(name);
     }
+    
+    /**
+     * add class names
+     * 
+     * @param names String[]{"name1", "name2", "nameN"}
+     */
+    public void addClassName(String[] names) {
+        for(int i = 0; names.length > i; i++) {
+            addClassName(names[i]);
+        }
+    }
 
     /**
      * get string with class names separated by spaces
@@ -255,20 +266,20 @@ public abstract class Html5 {
         return sb.toString().trim();
     }
 
-    public final StringBuilder append(Html5 html) {
-        return sbContent.append(html);
+    public final void append(Html5 html) {
+        sbContent.append(html);
     }
 
-    public final StringBuilder appendBr() {
-        return sbContent.append(new Html5Br());
+    public final void br() {
+        sbContent.append(new Html5Br());
     }
 
-    public final StringBuilder appendComment(String comment) {
-        return sbContent.append(new Html5Comment(comment));
+    public final void comment(String comment) {
+        sbContent.append(new Html5Comment(comment));
     }
 
-    public final StringBuilder append(String content) {
-        return sbContent.append(content);
+    public final void append(String content) {
+        sbContent.append(content);
     }
 
     public final String getHtml5() {

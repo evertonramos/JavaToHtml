@@ -25,6 +25,7 @@ package test;
 
 import html5.br.com.everton.Html5Br;
 import html5.br.com.everton.Html5Div;
+import html5.br.com.everton.Html5H1;
 import html5.br.com.everton.Html5Section;
 
 /**
@@ -56,6 +57,8 @@ public class Main {
         
         // content
         section.append("section content");
+        section.br();
+        section.comment("comentário no section");
         
         System.out.println(section);
         
@@ -64,8 +67,8 @@ public class Main {
         
         div.setIdAttribute("id_div");
         div.append("content");
-        div.appendBr();
-        div.appendComment("comment test");
+        div.br();
+        div.comment("comment test");
         
         System.out.println(div);
         
@@ -73,8 +76,17 @@ public class Main {
         Html5Br br = new Html5Br();
         
         br.setIdAttribute("id_br");
-        br.appendComment("comentário");
+        br.comment("comentário");
         System.out.println(br);
+     
+        // <h1>
+        Html5H1 h1 = new Html5H1("teste do H1");
+        h1.addClassName("classH1");
+        h1.addClassName(new String[]{"valor1", "valor2"});
+        h1.addStyle("color", "red");
+        h1.br();
+        h1.comment("comentário do h1");
         
+        System.out.println(h1);
     }
 }
