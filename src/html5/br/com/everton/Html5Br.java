@@ -29,9 +29,9 @@ package html5.br.com.everton;
  *
  * @author evertonramos
  */
-public class TagBr extends Html5 {
+public class Html5Br extends Html5 {
 
-    public TagBr() {
+    public Html5Br() {
         super("br");
     }
 

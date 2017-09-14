@@ -24,23 +24,22 @@
 package html5.br.com.everton;
 
 /**
- * The comment tag is used to insert comments in the source code. Comments are
- * not displayed in the browsers. You can use comments to explain your code,
- * which can help you when you edit the source code at a later date. This is
- * especially useful if you have a lot of code.
+ * The section tag defines sections in a document, such as chapters, headers,
+ * footers, or any other sections of the document.
  *
  * @author evertonramos
  */
-public class TagComment extends Html5 {
+public class Html5Section extends Html5 {
 
-    public TagComment() {
-        super("!--");
+    public Html5Section() {
+        super("section");
     }
     
-    public TagComment(String comment) {
-        super("!--");
-        
-        append(comment);
+    public Html5Section(String content) {
+        super("section", content);
     }
-
+    
+    public Html5Section(Html5 html5) {
+        super("section", html5);
+    }
 }

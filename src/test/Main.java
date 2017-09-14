@@ -23,9 +23,9 @@
  */
 package test;
 
-import html5.br.com.everton.TagBr;
-import html5.br.com.everton.TagDiv;
-import html5.br.com.everton.TagSection;
+import html5.br.com.everton.Html5Br;
+import html5.br.com.everton.Html5Div;
+import html5.br.com.everton.Html5Section;
 
 /**
  *
@@ -34,7 +34,7 @@ import html5.br.com.everton.TagSection;
 public class Main {
     public static void main(String [] args) {
         // <section>
-        TagSection section = new TagSection();
+        Html5Section section = new Html5Section();
         
         // set id
         section.setIdAttribute("id_section");
@@ -60,7 +60,7 @@ public class Main {
         System.out.println(section);
         
         // <div>
-        TagDiv div = new TagDiv();
+        Html5Div div = new Html5Div("tttttt");
         
         div.setIdAttribute("id_div");
         div.append("content");
@@ -70,7 +70,7 @@ public class Main {
         System.out.println(div);
         
         // <br>
-        TagBr br = new TagBr();
+        Html5Br br = new Html5Br();
         
         br.setIdAttribute("id_br");
         br.appendComment("comentário");

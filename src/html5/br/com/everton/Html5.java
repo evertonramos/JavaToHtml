@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * HTML attributes give elements meaning and context.
+ * HTML5
  *
  * @author evertonramos
  */
@@ -49,45 +49,30 @@ public abstract class Html5 {
     public Html5(String tagName) {
         setTagName(tagName);
     }
+    
+    public Html5(String tagName, String content) {
+        setTagName(tagName);
+        append(content);
+    }
+    
+    public Html5(String tagName, Html5 content) {
+        setTagName(tagName);
+        append(content);
+    }
 
     /**
      * Specifies one or more classnames for an element (refers to a class in a
      * style sheet)
      */
     private final List<String> classAttribute = new ArrayList<>();
-
-    /**
-     * Used to store custom data private to the page or application
-     */
-    private final Map<String, String> dataAttribute = new HashMap<>();
-
-    /**
-     * Specifies that an element is not yet, or is no longer, relevant
-     */
-    private boolean hiddenAttribute = false;
-
-    /**
-     * Specifies a unique id for an element
-     */
-    private String idAttribute = "";
-
-    /**
-     * Specifies an inline CSS style for an element
-     */
-    private final Map<String, String> styleAttribute = new HashMap<>();
-
-    /**
-     * Specifies extra information about an element
-     */
-    private String titleAttribute = "";
-
+    
     /**
      * add class name
      *
-     * @param sClass class name
+     * @param name class name
      */
-    public void addClassName(String sClass) {
-        classAttribute.add(sClass);
+    public void addClassName(String name) {
+        classAttribute.add(name);
     }
 
     /**
@@ -100,13 +85,18 @@ public abstract class Html5 {
     }
 
     /**
+     * Used to store custom data private to the page or application
+     */
+    private final Map<String, String> dataAttribute = new HashMap<>();
+    
+    /**
      * add data attribute
      *
-     * @param sAttribute attribute name
-     * @param sValue attribute value
+     * @param attribute attribute name
+     * @param value attribute value
      */
-    public void addDataAttribute(String sAttribute, String sValue) {
-        dataAttribute.put("data-" + sAttribute, sValue);
+    public void addDataAttribute(String attribute, String value) {
+        dataAttribute.put("data-" + attribute, value);
     }
 
     /**
@@ -126,6 +116,11 @@ public abstract class Html5 {
     }
 
     /**
+     * Specifies that an element is not yet, or is no longer, relevant
+     */
+    private boolean hiddenAttribute = false;
+    
+    /**
      * get hidden attribute value
      *
      * @return hidden attribute value
@@ -143,6 +138,11 @@ public abstract class Html5 {
         this.hiddenAttribute = hiddenAttribute;
     }
 
+    /**
+     * Specifies a unique id for an element
+     */
+    private String idAttribute = "";
+    
     /**
      * get id attribute value
      *
@@ -162,13 +162,18 @@ public abstract class Html5 {
     }
 
     /**
+     * Specifies an inline CSS style for an element
+     */
+    private final Map<String, String> styleAttribute = new HashMap<>();
+    
+    /**
      * add style
      *
-     * @param sProperty property name
-     * @param sValue property value
+     * @param property property name
+     * @param value property value
      */
-    public void addStyle(String sProperty, String sValue) {
-        styleAttribute.put(sProperty, sValue);
+    public void addStyle(String property, String value) {
+        styleAttribute.put(property, value);
     }
 
     /**
@@ -185,6 +190,11 @@ public abstract class Html5 {
 
         return sb.toString();
     }
+
+    /**
+     * Specifies extra information about an element
+     */
+    private String titleAttribute = "";
 
     /**
      * get title attribute value
@@ -245,27 +255,23 @@ public abstract class Html5 {
         return sb.toString().trim();
     }
 
-    public StringBuilder append(Html5 html) {
+    public final StringBuilder append(Html5 html) {
         return sbContent.append(html);
     }
 
-    public StringBuilder appendBr() {
-        return sbContent.append(new TagBr());
+    public final StringBuilder appendBr() {
+        return sbContent.append(new Html5Br());
     }
 
-    public StringBuilder appendComment(String sComment) {
-        return sbContent.append(new TagComment(sComment));
+    public final StringBuilder appendComment(String comment) {
+        return sbContent.append(new Html5Comment(comment));
     }
 
-    public StringBuilder append(String s) {
-        return sbContent.append(s);
+    public final StringBuilder append(String content) {
+        return sbContent.append(content);
     }
 
-    public StringBuilder append(StringBuilder sb) {
-        return sbContent.append(sb);
-    }
-
-    public String getHtml5() {
+    public final String getHtml5() {
         StringBuilder html5 = new StringBuilder();
 
         html5.append("<");
@@ -285,6 +291,7 @@ public abstract class Html5 {
                 html5.append(sbContent);
                 break;
             default:
+                // others
                 html5.append(">");
                 html5.append(sbContent);
                 html5.append("</").append(getTagName()).append(">");

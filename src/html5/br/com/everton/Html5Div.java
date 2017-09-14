@@ -29,10 +29,17 @@ package html5.br.com.everton;
  *
  * @author evertonramos
  */
-public class TagDiv extends Html5 {
+public class Html5Div extends Html5 {
 
-    public TagDiv() {
+    public Html5Div() {
         super("div");
     }
 
+    public Html5Div(String content) {
+        super("div", content);
+    }
+    
+    public Html5Div(Html5 html5) {
+        super("div", html5);
+    }
 }
