@@ -324,7 +324,7 @@ public abstract class Html5 {
                 html5.append(sbContent);
                 html5.append("-->");
                 break;
-            case "br":
+            case "br": 
                 // br
                 html5.append(">");
                 html5.append(sbContent);

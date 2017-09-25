@@ -21,48 +21,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package test;
-
-import html5.br.com.everton.Body;
-import html5.br.com.everton.Html;
-import html5.br.com.everton.Br;
-import html5.br.com.everton.Div;
-import html5.br.com.everton.H1;
-import html5.br.com.everton.Hr;
-import html5.br.com.everton.Doc;
-import html5.br.com.everton.Head;
-import html5.br.com.everton.Section;
+package html5.br.com.everton;
 
 /**
+ * The div tag defines a division or a section in an HTML document. The div tag
+ * is used to group block-elements to format them with CSS.
  *
  * @author evertonramos
  */
-public class Main {
-    public static void main(String [] args) {
-        Doc doc = new Doc();
-        
-        Html html = new Html();
-        
-        Head head = new Head();
-        
-        Body body = new Body();
-        body.append(new H1("H1 title"));
-        
-        Section section = new Section();
-        section.comment("teste do section");
-        
-        body.append(section);
-        
-        html.append(head);
-        html.append(body);
-        
-        doc.setHtml(html);
-        
-        
-        //doc.setBody(body);
-        
-        System.out.println(doc);
-        
-        
+public class Head extends Html5 {
+
+    public Head() {
+        super("head");
+    }
+
+    public Head(String content) {
+        super("head", content);
+    }
+    
+    public Head(Html5 html5) {
+        super("head", html5);
+    }
+    
+    public void setTitle(Title title) {
+        append(title);
+    }
+    
+    public void setTitle(String title) {
+        append(new Title(title));
     }
 }

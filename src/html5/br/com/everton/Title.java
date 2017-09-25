@@ -21,48 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package test;
-
-import html5.br.com.everton.Body;
-import html5.br.com.everton.Html;
-import html5.br.com.everton.Br;
-import html5.br.com.everton.Div;
-import html5.br.com.everton.H1;
-import html5.br.com.everton.Hr;
-import html5.br.com.everton.Doc;
-import html5.br.com.everton.Head;
-import html5.br.com.everton.Section;
+package html5.br.com.everton;
 
 /**
+ * The title tag is required in all HTML documents and it defines the title of
+ * the document.
+ *
+ * The title element: defines a title in the browser toolbar provides a title
+ * for the page when it is added to favorites displays a title for the page in
+ * search-engine results
  *
  * @author evertonramos
  */
-public class Main {
-    public static void main(String [] args) {
-        Doc doc = new Doc();
-        
-        Html html = new Html();
-        
-        Head head = new Head();
-        
-        Body body = new Body();
-        body.append(new H1("H1 title"));
-        
-        Section section = new Section();
-        section.comment("teste do section");
-        
-        body.append(section);
-        
-        html.append(head);
-        html.append(body);
-        
-        doc.setHtml(html);
-        
-        
-        //doc.setBody(body);
-        
-        System.out.println(doc);
-        
-        
+public class Title extends Html5 {
+
+    public Title() {
+        super("title");
+    }
+
+    public Title(String content) {
+        super("title", content);
     }
 }
