@@ -27,7 +27,6 @@ import br.com.everton.html5.Body;
 import br.com.everton.html5.Head;
 import br.com.everton.html5.Html;
 import br.com.everton.html5.Section;
-import br.com.everton.html5.Title;
 
 /**
  *
@@ -35,12 +34,15 @@ import br.com.everton.html5.Title;
  */
 public class Main {
     public static void main(String [] args) {
-        // title
-        Title title = new Title("Page title");
-        
         // head
         Head head = new Head();
-        head.appendTitle(title);
+        head.addTitle("Page title");
+        head.addHttpEquiv("X-UA-Compatible", "IE=edge,chrome=1");
+        head.addCharset("UTF-8");
+        head.addViewport("width=device-width, initial-scale=1.0, maximum-scale=1.0");
+        head.addDescription("description");
+        head.addAuthor("author");
+        
                 
         // section1
         Section section1 = new Section();

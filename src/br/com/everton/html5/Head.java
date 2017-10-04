@@ -35,19 +35,56 @@ public class Head extends Html5 {
         super("head");
     }
 
-    //public Head(String content) {
-    //    super("head", content);
-   // }
-    
-    public Head(Html5 html5) {
-        super("head", html5);
+    public void addTitle(String title) {
+        append("<title>" + title + "</title>");
     }
     
-    public void appendTitle(Title title) {
-        append(title);
+    // meta
+    public void addCharset(String charset) {
+        append("<meta charset='" + charset + "'>");
     }
     
-    public void appendTitle(String title) {
-        append(new Title(title));
+    public void addHttpEquiv(String httpEquiv, String content) {
+        append("<meta http-equiv='" + httpEquiv + "' content='" + content + "'>");
+    }
+    
+    public void addContentType(String content) {
+        addHttpEquiv("content-type", content);
+    }
+    
+    public void addDefaultStyle(String content) {
+        addHttpEquiv("default-style", content);
+    }
+    
+    public void addRefresh(String content) {
+        addHttpEquiv("refresh", content);
+    }
+    
+    public void addName(String name, String content) {
+        append("<meta name='" + name + "' content='" + content + "'>");
+    }
+    
+    public void addApplicationName(String content) {
+        addName("application-name", content);
+    }
+    
+    public void addAuthor(String content) {
+        addName("author", content);
+    }
+    
+    public void addDescription(String content) {
+        addName("description", content);
+    }
+    
+    public void addGenerator(String content) {
+        addName("generator", content);
+    }
+    
+    public void addKeywords(String content) {
+        addName("keywords", content);
+    }
+    
+    public void addViewport(String content) {
+        addName("viewport", content);
     }
 }

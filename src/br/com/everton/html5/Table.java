@@ -24,22 +24,15 @@
 package br.com.everton.html5;
 
 /**
- * The title tag is required in all HTML documents and it defines the title of
- * the document.
- *
- * The title element: defines a title in the browser toolbar provides a title
- * for the page when it is added to favorites displays a title for the page in
- * search-engine results
+ * The div tag defines a division or a section in an HTML document. The div tag
+ * is used to group block-elements to format them with CSS.
  *
  * @author evertonramos
  */
-public class Title extends Html5 {
+public class Table extends Html5 {
 
-    public Title() {
-        super("title");
+    public Table() {
+        super("table");
     }
-
-    public Title(String content) {
-        super("title", content);
-    }
+        
 }
