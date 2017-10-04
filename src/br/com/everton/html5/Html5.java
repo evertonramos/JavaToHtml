@@ -349,7 +349,7 @@ public abstract class Html5 {
 
         if (!indentation) {
             return html5.toString();
-        } else {
+        } else { // todo need make an indentation function
             return html5.toString().replaceAll("\\><", ">\n<");
         }
 

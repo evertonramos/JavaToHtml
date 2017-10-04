@@ -35,24 +35,31 @@ import br.com.everton.html5.Title;
  */
 public class Main {
     public static void main(String [] args) {
-        Html html = new Html();
+        // title
+        Title title = new Title("Page title");
         
+        // head
         Head head = new Head();
-        
-        Title title = new Title("Título da página");
-        
         head.appendTitle(title);
-        
-        html.append(head);
-        
-        Body body = new Body();
-        
+                
+        // section1
         Section section1 = new Section();
         section1.setIdAttribute("section1");
-        section1.append("content of section1");
-        
+        section1.append("content of section1");        
+                
+        // section2
+        Section section2 = new Section();
+        section2.setIdAttribute("section2");
+        section2.append("content of section2");        
+
+        // body
+        Body body = new Body();
         body.append(section1);
-        
+        body.append(section2);
+
+        // html
+        Html html = new Html();
+        html.append(head);        
         html.append(body);
         
         System.out.println(html.getHtml5(true));
