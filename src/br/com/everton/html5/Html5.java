@@ -313,6 +313,10 @@ public abstract class Html5 {
     public final String getHtml5(boolean indentation) {
         StringBuilder html5 = new StringBuilder();
 
+        if(getTagName().equals("html")) {
+            html5.append(new Doctype());
+        }
+        
         html5.append("<");
         html5.append(getTagName());
         html5.append(getAttributes().isEmpty() ? "" : (" " + getAttributes()));
@@ -325,7 +329,6 @@ public abstract class Html5 {
                 break;
             case "!--":
                 // comment
-                html5.append(">");
                 html5.append(sbContent);
                 html5.append("-->");
                 break;

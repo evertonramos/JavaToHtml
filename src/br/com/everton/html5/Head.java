@@ -55,44 +55,48 @@ public class Head extends Html5 {
         addMeta("charset", charset, "");
     }
 
+    public void addHttpEquiv(String value, String content) {
+        addMeta("http-equiv", value, content);
+    }
+    
     public void addContentType(String content) {
-        addMeta("http-equiv", "content-type", content);
+        addHttpEquiv("content-type", content);
     }
 
     public void addDefaultStyle(String content) {
-        addMeta("http-equiv", "default-style", content);
+        addHttpEquiv("default-style", content);
     }
 
     public void addRefresh(String content) {
-        addMeta("http-equiv", "refresh", content);
+        addHttpEquiv("refresh", content);
     }
 
-    public void addName(String name, String content) {
-        append("<meta name='" + name + "' content='" + content + "'>");
+    public void addName(String value, String content) {
+        addMeta("name", value, content);
     }
 
     public void addApplicationName(String content) {
-        addMeta("name", "application-name", content);
+        addName("application-name", content);
     }
 
     public void addAuthor(String content) {
-        addMeta("name", "author", content);
+        addName("author", content);
     }
 
     public void addDescription(String content) {
-        addMeta("name", "description", content);
+        addName("description", content);
     }
 
     public void addGenerator(String content) {
-        addMeta("name", "generator", content);
+        addName("generator", content);
     }
 
     public void addKeywords(String content) {
-        addMeta("name", "keywords", content);
+        addName("keywords", content);
     }
 
     public void addViewport(String content) {
-        addMeta("name", "viewport", content);
+        addName("viewport", content);
     }
 
     // link
