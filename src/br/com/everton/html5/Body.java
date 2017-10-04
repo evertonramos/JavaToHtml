@@ -21,26 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package html5.br.com.everton;
+package br.com.everton.html5;
 
 /**
- * The h1 to h6 tags are used to define HTML headings. h1 defines the most
- * important heading. h6 defines the least important heading.
+ * The div tag defines a division or a section in an HTML document. The div tag
+ * is used to group block-elements to format them with CSS.
  *
  * @author evertonramos
  */
-public class H2 extends Html5 {
+public class Body extends Html5 {
 
-    public H2() {
-        super("h2");
+    public Body() {
+        super("body");
     }
 
-    public H2(String content) {
-        super("h2", content);
+    public Body(String content) {
+        super("body", content);
     }
-
-    public H2(Html5 html5) {
-        super("h2", html5);
+    
+    public Body(Html5 html5) {
+        super("body", html5);
     }
-
 }

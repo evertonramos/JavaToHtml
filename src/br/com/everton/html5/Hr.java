@@ -21,26 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package html5.br.com.everton;
+package br.com.everton.html5;
 
 /**
- * The h1 to h6 tags are used to define HTML headings. h1 defines the most
- * important heading. h6 defines the least important heading.
+ * The hr tag defines a thematic break in an HTML page (e.g. a shift of topic).
+ * The hr element is used to separate content (or define a change) in an HTML
+ * page.
  *
  * @author evertonramos
  */
-public class H3 extends Html5 {
+public class Hr extends Html5 {
 
-    public H3() {
-        super("h3");
-    }
-
-    public H3(String content) {
-        super("h3", content);
-    }
-
-    public H3(Html5 html5) {
-        super("h3", html5);
+    public Hr() {
+        super("hr");
     }
 
 }

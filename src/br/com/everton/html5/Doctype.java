@@ -21,25 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package html5.br.com.everton;
+package br.com.everton.html5;
 
 /**
- * The section tag defines sections in a document, such as chapters, headers,
- * footers, or any other sections of the document.
+ * The html tag tells the browser that this is an HTML document. The html tag
+ * represents the root of an HTML document. The html tag is the container for
+ * all other HTML elements (except for the <!DOCTYPE> tag).
  *
  * @author evertonramos
  */
-public class Section extends Html5 {
+public class Doctype extends Html5 {
 
-    public Section() {
-        super("section");
+    public Doctype() {
+        super("!DOCTYPE");
     }
-    
-    public Section(String content) {
-        super("section", content);
-    }
-    
-    public Section(Html5 html5) {
-        super("section", html5);
-    }
+
 }

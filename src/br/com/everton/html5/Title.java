@@ -21,26 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package html5.br.com.everton;
+package br.com.everton.html5;
 
 /**
- * The h1 to h6 tags are used to define HTML headings. h1 defines the most
- * important heading. h6 defines the least important heading.
+ * The title tag is required in all HTML documents and it defines the title of
+ * the document.
+ *
+ * The title element: defines a title in the browser toolbar provides a title
+ * for the page when it is added to favorites displays a title for the page in
+ * search-engine results
  *
  * @author evertonramos
  */
-public class H1 extends Html5 {
+public class Title extends Html5 {
 
-    public H1() {
-        super("h1");
+    public Title() {
+        super("title");
     }
 
-    public H1(String content) {
-        super("h1", content);
+    public Title(String content) {
+        super("title", content);
     }
-
-    public H1(Html5 html5) {
-        super("h1", html5);
-    }
-
 }

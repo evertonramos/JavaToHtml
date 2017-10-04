@@ -21,41 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package test;
-
-import br.com.everton.html5.Body;
-import br.com.everton.html5.Head;
-import br.com.everton.html5.Html;
-import br.com.everton.html5.Section;
-import br.com.everton.html5.Title;
+package br.com.everton.html5;
 
 /**
+ * The br tag inserts a single line break. The br tag is an empty tag which
+ * means that it has no end tag.
  *
  * @author evertonramos
  */
-public class Main {
-    public static void main(String [] args) {
-        Html html = new Html();
-        
-        Head head = new Head();
-        
-        Title title = new Title("Título da página");
-        
-        head.appendTitle(title);
-        
-        html.append(head);
-        
-        Body body = new Body();
-        
-        Section section1 = new Section();
-        section1.setIdAttribute("section1");
-        section1.append("content of section1");
-        
-        body.append(section1);
-        
-        html.append(body);
-        
-        System.out.println(html.getHtml5(true));
-        
+public class Br extends Html5 {
+
+    public Br() {
+        super("br");
     }
+
 }

@@ -21,19 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package html5.br.com.everton;
+package br.com.everton.html5;
 
 /**
- * The html tag tells the browser that this is an HTML document. The html tag
- * represents the root of an HTML document. The html tag is the container for
- * all other HTML elements (except for the <!DOCTYPE> tag).
+ * The h1 to h6 tags are used to define HTML headings. h1 defines the most
+ * important heading. h6 defines the least important heading.
  *
  * @author evertonramos
  */
-public class Html extends Html5 {
+public class H3 extends Html5 {
 
-    public Html() {
-        super("html");
+    public H3() {
+        super("h3");
+    }
+
+    public H3(String content) {
+        super("h3", content);
+    }
+
+    public H3(Html5 html5) {
+        super("h3", html5);
     }
 
 }

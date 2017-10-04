@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package html5.br.com.everton;
+package br.com.everton.html5;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -310,7 +310,7 @@ public abstract class Html5 {
         sbContent.append(html);
     }
 
-    public final String getHtml5() {
+    public final String getHtml5(boolean indentation) {
         StringBuilder html5 = new StringBuilder();
 
         html5.append("<");
@@ -318,13 +318,18 @@ public abstract class Html5 {
         html5.append(getAttributes().isEmpty() ? "" : (" " + getAttributes()));
 
         switch (getTagName()) {
+            case "!DOCTYPE":
+                // doctype
+                html5.append(" html>");
+                html5.append(sbContent);
+                break;
             case "!--":
                 // comment
                 html5.append(">");
                 html5.append(sbContent);
                 html5.append("-->");
                 break;
-            case "br": 
+            case "br":
                 // br
                 html5.append(">");
                 html5.append(sbContent);
@@ -342,11 +347,16 @@ public abstract class Html5 {
                 break;
         }
 
-        return html5.toString();
+        if (!indentation) {
+            return html5.toString();
+        } else {
+            return html5.toString().replaceAll("\\><", ">\n<");
+        }
+
     }
 
     @Override
     public String toString() {
-        return getHtml5();
+        return getHtml5(false);
     }
 }

@@ -21,19 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package html5.br.com.everton;
+package br.com.everton.html5;
 
 /**
- * The hr tag defines a thematic break in an HTML page (e.g. a shift of topic).
- * The hr element is used to separate content (or define a change) in an HTML
- * page.
+ * The comment tag is used to insert comments in the source code. Comments are
+ * not displayed in the browsers. You can use comments to explain your code,
+ * which can help you when you edit the source code at a later date. This is
+ * especially useful if you have a lot of code.
  *
  * @author evertonramos
  */
-public class Hr extends Html5 {
+public class Comment extends Html5 {
 
-    public Hr() {
-        super("hr");
+    public Comment() {
+        super("!--");
+    }
+    
+    public Comment(String comment) {
+        super("!--", comment);
     }
 
 }

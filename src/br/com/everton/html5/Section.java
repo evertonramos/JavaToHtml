@@ -21,18 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package html5.br.com.everton;
+package br.com.everton.html5;
 
 /**
- * The br tag inserts a single line break. The br tag is an empty tag which
- * means that it has no end tag.
+ * The section tag defines sections in a document, such as chapters, headers,
+ * footers, or any other sections of the document.
  *
  * @author evertonramos
  */
-public class Br extends Html5 {
+public class Section extends Html5 {
 
-    public Br() {
-        super("br");
+    public Section() {
+        super("section");
     }
-
+    
+    public Section(String content) {
+        super("section", content);
+    }
+    
+    public Section(Html5 html5) {
+        super("section", html5);
+    }
 }
