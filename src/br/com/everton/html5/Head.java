@@ -38,53 +38,81 @@ public class Head extends Html5 {
     public void addTitle(String title) {
         append("<title>" + title + "</title>");
     }
-    
+
     // meta
+    public void addMeta(String key, String value, String content) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("<meta");
+        sb.append((!key.isEmpty()) ? (" " + key + "='" + value + "'") : "");
+        sb.append((!content.isEmpty()) ? (" content='" + content + "'") : "");
+        sb.append(">");
+
+        append(sb.toString());
+    }
+
     public void addCharset(String charset) {
-        append("<meta charset='" + charset + "'>");
+        addMeta("charset", charset, "");
     }
-    
-    public void addHttpEquiv(String httpEquiv, String content) {
-        append("<meta http-equiv='" + httpEquiv + "' content='" + content + "'>");
-    }
-    
+
     public void addContentType(String content) {
-        addHttpEquiv("content-type", content);
+        addMeta("http-equiv", "content-type", content);
     }
-    
+
     public void addDefaultStyle(String content) {
-        addHttpEquiv("default-style", content);
+        addMeta("http-equiv", "default-style", content);
     }
-    
+
     public void addRefresh(String content) {
-        addHttpEquiv("refresh", content);
+        addMeta("http-equiv", "refresh", content);
     }
-    
+
     public void addName(String name, String content) {
         append("<meta name='" + name + "' content='" + content + "'>");
     }
-    
+
     public void addApplicationName(String content) {
-        addName("application-name", content);
+        addMeta("name", "application-name", content);
     }
-    
+
     public void addAuthor(String content) {
-        addName("author", content);
+        addMeta("name", "author", content);
     }
-    
+
     public void addDescription(String content) {
-        addName("description", content);
+        addMeta("name", "description", content);
     }
-    
+
     public void addGenerator(String content) {
-        addName("generator", content);
+        addMeta("name", "generator", content);
     }
-    
+
     public void addKeywords(String content) {
-        addName("keywords", content);
+        addMeta("name", "keywords", content);
     }
-    
+
     public void addViewport(String content) {
-        addName("viewport", content);
+        addMeta("name", "viewport", content);
+    }
+
+    // link
+    public void addLink(String crossorigin, String href, String hreflang, String media, String rel, String sizes, String type) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("<link");
+        sb.append((!crossorigin.isEmpty()) ? (" crossorigin='" + crossorigin + "'") : "");
+        sb.append((!href.isEmpty()) ? (" href='" + href + "'") : "");
+        sb.append((!hreflang.isEmpty()) ? (" hreflang='" + hreflang + "'") : "");
+        sb.append((!media.isEmpty()) ? (" media='" + media + "'") : "");
+        sb.append((!rel.isEmpty()) ? (" rel='" + rel + "'") : "");
+        sb.append((rel.equals("icon") && !sizes.isEmpty()) ? (" sizes='" + sizes + "'") : "");
+        sb.append((!type.isEmpty()) ? (" type='" + type + "'") : "");
+        sb.append(">");
+
+        append(sb.toString());
+    }
+
+    public void addStylesheet(String href) {
+        addLink("", href, "", "", "stylesheet", "", "text/css");
     }
 }

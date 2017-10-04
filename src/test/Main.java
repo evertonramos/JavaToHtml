@@ -37,12 +37,12 @@ public class Main {
         // head
         Head head = new Head();
         head.addTitle("Page title");
-        head.addHttpEquiv("X-UA-Compatible", "IE=edge,chrome=1");
+        //head.addHttpEquiv("X-UA-Compatible", "IE=edge,chrome=1");
         head.addCharset("UTF-8");
         head.addViewport("width=device-width, initial-scale=1.0, maximum-scale=1.0");
         head.addDescription("description");
         head.addAuthor("author");
-        
+        head.addStylesheet("arquivo.css");
                 
         // section1
         Section section1 = new Section();
