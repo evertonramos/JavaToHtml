@@ -24,15 +24,26 @@
 package br.com.everton.html5;
 
 /**
- * The div tag defines a division or a section in an HTML document. The div tag
- * is used to group block-elements to format them with CSS.
+ * The table tag defines an HTML table.
  *
  * @author evertonramos
  */
 public class Table extends Html5 {
+    // todo sortable https://www.w3schools.com/TagS/tag_table.asp
 
     public Table() {
         super("table");
     }
-        
+    
+    public void addThead(Thead thead) {
+        append(thead);
+    }
+    
+    public void addTBody(Tbody tbody) {
+        append(tbody);
+    }
+    
+    public void addTfoot(Tfoot tfoot) {
+        append(tfoot);
+    }
 }

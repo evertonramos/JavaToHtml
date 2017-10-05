@@ -224,6 +224,47 @@ public abstract class Html5 {
     public void setTitleAttribute(String titleAttribute) {
         this.titleAttribute = titleAttribute;
     }
+    
+    
+    
+    
+    
+    /**
+     * Used to store custom attributes
+     */
+    private final Map<String, String> customAttribute = new HashMap<>();
+
+    /**
+     * add custom attribute
+     *
+     * @param attribute attribute name
+     * @param value attribute value
+     */
+    public void addCustomAttribute(String attribute, String value) {
+        customAttribute.put(attribute, value);
+    }
+
+    /**
+     * get string with custom attributes separated by spaces
+     *
+     * @return something like: attribute1='value' attribute2='value' attributeN='value'
+     */
+    private String getCustomAttributes() {
+        StringBuilder sb = new StringBuilder();
+
+        customAttribute.forEach((key, value) -> {
+            sb.append(key).append("='").append(value).append("' ");
+        });
+
+        return sb.toString().trim();
+    }
+    
+    
+    
+    
+    
+    
+    
 
     /**
      * get string with attributes
@@ -261,6 +302,11 @@ public abstract class Html5 {
         // title
         if (!getTitleAttribute().isEmpty()) {
             sb.append("title='").append(getTitleAttribute()).append("' ");
+        }
+        
+        // custom
+        if (!getCustomAttributes().isEmpty()) {
+            sb.append(getCustomAttributes()).append(" ");
         }
 
         return sb.toString().trim();

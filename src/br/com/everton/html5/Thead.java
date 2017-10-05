@@ -24,32 +24,17 @@
 package br.com.everton.html5;
 
 /**
- * The td tag defines a standard cell in an HTML table.
+ * The thead tag is used to group header content in an HTML table.
  *
  * @author evertonramos
  */
-public class Td extends Html5 {
-    // todo headers https://www.w3schools.com/TagS/tag_td.asp
-    // todo scope
-    // todo 
+public class Thead extends Html5 {
+
+    public Thead() {
+        super("thead");
+    }
     
-    public Td() {
-        super("td");
-    }
-
-    public Td(Html5 content) {
-        super("td", content);
-    }
-
-    public Td(String content) {
-        super("td", content);
-    }
-
-    public void setColspan(int colspan) {
-        addCustomAttribute("colspan", Integer.toString(colspan));
-    }
-
-    public void setRowspan(int rowspan) {
-        addCustomAttribute("rowspan", Integer.toString(rowspan));
+    public void addTr(Tr tr) {
+        append(tr);
     }
 }

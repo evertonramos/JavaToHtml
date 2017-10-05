@@ -24,27 +24,29 @@
 package br.com.everton.html5;
 
 /**
- * The td tag defines a standard cell in an HTML table.
+ * The th tag defines a header cell in an HTML table.
  *
  * @author evertonramos
  */
-public class Td extends Html5 {
-    // todo headers https://www.w3schools.com/TagS/tag_td.asp
+public class Th extends Html5 {
+    // todo abbr https://www.w3schools.com/TagS/tag_th.asp
+    // todo headers
     // todo scope
-    // todo 
+    // todo sorted
     
-    public Td() {
-        super("td");
+    
+    public Th() {
+        super("th");
     }
-
-    public Td(Html5 content) {
-        super("td", content);
+    
+    public Th(Html5 content) {
+        super("th", content);
     }
-
-    public Td(String content) {
-        super("td", content);
+    
+    public Th(String content) {
+        super("th", content);
     }
-
+    
     public void setColspan(int colspan) {
         addCustomAttribute("colspan", Integer.toString(colspan));
     }

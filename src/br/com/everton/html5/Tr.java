@@ -24,8 +24,7 @@
 package br.com.everton.html5;
 
 /**
- * The div tag defines a division or a section in an HTML document. The div tag
- * is used to group block-elements to format them with CSS.
+ * The tr tag defines a row in an HTML table.
  *
  * @author evertonramos
  */
@@ -35,4 +34,11 @@ public class Tr extends Html5 {
         super("tr");
     }
     
+    public void addTh(Th th) {
+        append(th);
+    }
+    
+    public void addTd(Td td) {
+        append(td);
+    }
 }

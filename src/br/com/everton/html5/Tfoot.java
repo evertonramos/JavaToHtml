@@ -24,32 +24,17 @@
 package br.com.everton.html5;
 
 /**
- * The td tag defines a standard cell in an HTML table.
+ * The tfoot tag is used to group footer content in an HTML table.
  *
  * @author evertonramos
  */
-public class Td extends Html5 {
-    // todo headers https://www.w3schools.com/TagS/tag_td.asp
-    // todo scope
-    // todo 
+public class Tfoot extends Html5 {
+
+    public Tfoot() {
+        super("tfoot");
+    }
     
-    public Td() {
-        super("td");
-    }
-
-    public Td(Html5 content) {
-        super("td", content);
-    }
-
-    public Td(String content) {
-        super("td", content);
-    }
-
-    public void setColspan(int colspan) {
-        addCustomAttribute("colspan", Integer.toString(colspan));
-    }
-
-    public void setRowspan(int rowspan) {
-        addCustomAttribute("rowspan", Integer.toString(rowspan));
+    public void addTr(Tr tr) {
+        append(tr);
     }
 }
