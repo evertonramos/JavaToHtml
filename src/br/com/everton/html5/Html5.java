@@ -171,7 +171,7 @@ public abstract class Html5 {
     public void setIdAttribute(String idAttribute) {
         this.idAttribute = idAttribute;
     }
-    
+
     /**
      * Specifies an inline CSS style for an element
      */
@@ -224,11 +224,7 @@ public abstract class Html5 {
     public void setTitleAttribute(String titleAttribute) {
         this.titleAttribute = titleAttribute;
     }
-    
-    
-    
-    
-    
+
     /**
      * Used to store custom attributes
      */
@@ -247,7 +243,8 @@ public abstract class Html5 {
     /**
      * get string with custom attributes separated by spaces
      *
-     * @return something like: attribute1='value' attribute2='value' attributeN='value'
+     * @return something like: attribute1='value' attribute2='value'
+     * attributeN='value'
      */
     private String getCustomAttributes() {
         StringBuilder sb = new StringBuilder();
@@ -258,13 +255,6 @@ public abstract class Html5 {
 
         return sb.toString().trim();
     }
-    
-    
-    
-    
-    
-    
-    
 
     /**
      * get string with attributes
@@ -303,7 +293,7 @@ public abstract class Html5 {
         if (!getTitleAttribute().isEmpty()) {
             sb.append("title='").append(getTitleAttribute()).append("' ");
         }
-        
+
         // custom
         if (!getCustomAttributes().isEmpty()) {
             sb.append(getCustomAttributes()).append(" ");
@@ -318,6 +308,12 @@ public abstract class Html5 {
 
     public final void br() {
         sbContent.append(new Br());
+    }
+
+    public final void br(int times) {
+        for (int x = 0; x < times; x++) {
+            sbContent.append(new Br());
+        }
     }
 
     public final void h1(String heading) {
@@ -359,10 +355,10 @@ public abstract class Html5 {
     public final String getHtml5(boolean indentation) {
         StringBuilder html5 = new StringBuilder();
 
-        if(getTagName().equals("html")) {
+        if (getTagName().equals("html")) {
             html5.append(new Doctype());
         }
-        
+
         html5.append("<");
         html5.append(getTagName());
         html5.append(getAttributes().isEmpty() ? "" : (" " + getAttributes()));

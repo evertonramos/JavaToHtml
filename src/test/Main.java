@@ -61,7 +61,8 @@ public class Main {
         Section section2 = new Section();
         section2.setIdAttribute("section2");
         section2.append("content of section2");
-
+        section2.br(3); // three br
+        
         // thead        
         Thead thead = new Thead();
         Tr trHead = new Tr();
