@@ -312,7 +312,7 @@ public abstract class Html5 {
 
     public final void br(int times) {
         for (int x = 0; x < times; x++) {
-            sbContent.append(new Br());
+            br();
         }
     }
 
