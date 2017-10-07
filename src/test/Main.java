@@ -42,7 +42,7 @@ import br.com.everton.html5.Tr;
 public class Main {
 
     public static void main(String[] args) {
-        long mills = System.currentTimeMillis();
+        long millis = System.currentTimeMillis();
         
         // head
         Head head = new Head();
@@ -118,8 +118,8 @@ public class Main {
         html.append(head);
         html.append(body);
 
-        System.out.println(html.getHtml5(true));
+        System.out.println(html.getHtml5(false));
 
-        System.out.println("elapsed time (μs): " + (System.currentTimeMillis() - mills));
+        System.out.println("elapsed time (μs): " + (System.currentTimeMillis() - millis));
     }
 }
