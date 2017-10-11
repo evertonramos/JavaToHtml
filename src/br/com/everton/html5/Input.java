@@ -32,18 +32,20 @@ public class Input extends Html5 {
     public Input() {
         super("input");
     }
-    
+
+    // teste
+
     public void setType(String type) {
         addCustomAttribute("type", type);
     }
-    
+
     public void setName(String name) {
         addCustomAttribute("name", name);
     }
-    
+
     public void setValue(String value) {
         addCustomAttribute("value", value);
     }
-    
+
     // https://www.w3schools.com/tags/tag_input.asp
 }
