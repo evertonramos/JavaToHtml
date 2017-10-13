@@ -29,16 +29,25 @@ package br.com.everton.html5;
  * @author evertonramos
  */
 public class Tr extends Html5 {
+    private int columns = 0;
+
+    public int getColumns() {
+        return columns;
+    }
 
     public Tr() {
         super("tr");
     }
     
     public void addTh(Th th) {
+        columns++;
+        
         append(th);
     }
     
     public void addTd(Td td) {
+        columns++;
+        
         append(td);
     }
 }

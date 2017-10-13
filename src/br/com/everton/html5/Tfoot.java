@@ -29,12 +29,19 @@ package br.com.everton.html5;
  * @author evertonramos
  */
 public class Tfoot extends Html5 {
+    private int lines = 0;
 
+    public int getLines() {
+        return lines;
+    }
+    
     public Tfoot() {
         super("tfoot");
     }
     
     public void addTr(Tr tr) {
+        lines++;
+        
         append(tr);
     }
 }

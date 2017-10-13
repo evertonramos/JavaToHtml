@@ -352,6 +352,104 @@ public abstract class Html5 {
         sbContent.append(html);
     }
 
+    // css
+    public final void setWidth(int width) {
+        addStyle("width", Integer.toString(width) + "px");
+    }
+
+    public final void setHeight(int height) {
+        addStyle("height", Integer.toString(height) + "px");
+    }
+
+    public enum TextAlign {
+        LEFT, // Aligns the text to the left
+        RIGHT, // Aligns the text to the right
+        CENTER, // Centers the text
+        JUSTIFY, // Stretches the lines so that each line has equal width (like in newspapers and magazines)
+        INITIAL, // Sets this property to its default value
+        INHERIT; // Inherits this property from its parent element
+
+        @Override
+        public String toString() {
+            switch (this) {
+                case RIGHT:
+                    return "right";
+                case CENTER:
+                    return "center";
+                case JUSTIFY:
+                    return "justify";
+                case INITIAL:
+                    return "initial";
+                case INHERIT:
+                    return "inherit";
+                default:
+                    return "left";
+            }
+        }
+    }
+
+    public final void setTextAlign(TextAlign textAlign) {
+        addStyle("text-align", textAlign.toString());
+    }
+
+    public enum FontWeight {
+        NORMAL, // Defines normal characters. This is default
+        BOLD, // Defines thick characters
+        BOLDER, // Defines thicker characters
+        LIGHTER, // Defines lighter characters
+        N100, // Defines from thin to thick characters. 400 is the same as normal, and 700 is the same as bold
+        N200,
+        N300,
+        N400,
+        N500,
+        N600,
+        N700,
+        N800,
+        N900,
+        INITIAL, // Sets this property to its default value
+        INHERIT; // Inherits this property from its parent element
+
+        @Override
+        public String toString() {
+            switch (this) {
+                case BOLD:
+                    return "bold";
+                case BOLDER:
+                    return "bolder";
+                case LIGHTER:
+                    return "lighter";
+                case N100:
+                    return "100";
+                case N200:
+                    return "200";
+                case N300:
+                    return "300";
+                case N400:
+                    return "400";
+                case N500:
+                    return "500";
+                case N600:
+                    return "600";
+                case N700:
+                    return "700";
+                case N800:
+                    return "800";
+                case N900:
+                    return "900";
+                case INITIAL:
+                    return "initial";
+                case INHERIT:
+                    return "inherit";
+                default:
+                    return "normal";
+            }
+        }
+    }
+    
+    public final void setFontWeight(FontWeight fontWeight) {
+        addStyle("font-weight", fontWeight.toString());
+    }
+
     public final String getHtml5(boolean indentation) {
         StringBuilder html5 = new StringBuilder();
 

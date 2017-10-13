@@ -29,12 +29,19 @@ package br.com.everton.html5;
  * @author evertonramos
  */
 public class Tbody extends Html5 {
+    private int lines = 0;
 
+    public int getLines() {
+        return lines;
+    }
+    
     public Tbody() {
         super("tbody");
     }
     
     public void addTr(Tr tr) {
+        lines++;
+        
         append(tr);
     }
 }
