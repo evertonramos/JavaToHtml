@@ -24,9 +24,10 @@
 package br.com.everton.html5;
 
 /**
- * The html tag tells the browser that this is an HTML document. The html tag
- * represents the root of an HTML document. The html tag is the container for
- * all other HTML elements (except for the !DOCTYPE tag).
+ * The !DOCTYPE declaration must be the very first thing in your HTML document,
+ * before the html tag. The !DOCTYPE declaration is not an HTML tag; it is an
+ * instruction to the web browser about what version of HTML the page is written
+ * in.
  *
  * @author evertonramos
  */

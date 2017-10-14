@@ -24,29 +24,26 @@
 package br.com.everton.html5;
 
 /**
- * The li tag defines a list item. The li tag is used in ordered lists(ol),
- * unordered lists (ul), and in menu lists (menu).
+ * The ul tag defines an unordered (bulleted) list. Use the ul tag together with
+ * the li tag to create unordered lists.
  *
  * @author evertonramos
  */
-public class Li extends Html5 {
+public class Ul extends Html5 {
 
-    public Li() {
-        super("li");
+    private int items = 0;
+
+    public int getItems() {
+        return items;
     }
 
-    public Li(String content) {
-        super("li", content);
+    public Ul() {
+        super("ul");
     }
 
-    /**
-     * The value attribute sets the value of a list item. The following list
-     * items will increment from that number. The value must be a number and can
-     * only be used in ordered lists (ol).
-     *
-     * @param number Specifies the value of the list item
-     */
-    public void setValue(int number) {
-        addCustomAttribute("value", Integer.toString(number));
+    public void addLi(Li li) {
+        items++;
+
+        append(li);
     }
 }
