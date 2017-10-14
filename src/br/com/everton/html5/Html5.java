@@ -445,7 +445,7 @@ public abstract class Html5 {
             }
         }
     }
-    
+
     public final void setFontWeight(FontWeight fontWeight) {
         addStyle("font-weight", fontWeight.toString());
     }
