@@ -362,12 +362,31 @@ public abstract class Html5 {
     }
 
     public enum TextAlign {
-        LEFT, // Aligns the text to the left
-        RIGHT, // Aligns the text to the right
-        CENTER, // Centers the text
-        JUSTIFY, // Stretches the lines so that each line has equal width (like in newspapers and magazines)
-        INITIAL, // Sets this property to its default value
-        INHERIT; // Inherits this property from its parent element
+        /**
+         * Aligns the text to the left
+         */
+        LEFT,
+        /**
+         * Aligns the text to the right
+         */
+        RIGHT,
+        /**
+         * Centers the text
+         */
+        CENTER,
+        /**
+         * Stretches the lines so that each line has equal width (like in
+         * newspapers and magazines)
+         */
+        JUSTIFY,
+        /**
+         * Sets this property to its default value
+         */
+        INITIAL,
+        /**
+         * Inherits this property from its parent element
+         */
+        INHERIT;
 
         @Override
         public String toString() {
@@ -393,11 +412,27 @@ public abstract class Html5 {
     }
 
     public enum FontWeight {
-        NORMAL, // Defines normal characters. This is default
-        BOLD, // Defines thick characters
-        BOLDER, // Defines thicker characters
-        LIGHTER, // Defines lighter characters
-        N100, // Defines from thin to thick characters. 400 is the same as normal, and 700 is the same as bold
+        /**
+         * Defines normal characters. This is default
+         */
+        NORMAL,
+        /**
+         * Defines thick characters
+         */
+        BOLD,
+        /**
+         * Defines thicker characters
+         */
+        BOLDER,
+        /**
+         * Defines lighter characters
+         */
+        LIGHTER,
+        /**
+         * Defines from thin to thick characters. 400 is the same as normal, and
+         * 700 is the same as bold
+         */
+        N100,
         N200,
         N300,
         N400,
@@ -406,8 +441,14 @@ public abstract class Html5 {
         N700,
         N800,
         N900,
-        INITIAL, // Sets this property to its default value
-        INHERIT; // Inherits this property from its parent element
+        /**
+         * Sets this property to its default value
+         */
+        INITIAL,
+        /**
+         * Inherits this property from its parent element
+         */
+        INHERIT;
 
         @Override
         public String toString() {
