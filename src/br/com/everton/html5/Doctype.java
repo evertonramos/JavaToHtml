@@ -26,7 +26,7 @@ package br.com.everton.html5;
 /**
  * The html tag tells the browser that this is an HTML document. The html tag
  * represents the root of an HTML document. The html tag is the container for
- * all other HTML elements (except for the <!DOCTYPE> tag).
+ * all other HTML elements (except for the !DOCTYPE tag).
  *
  * @author evertonramos
  */
