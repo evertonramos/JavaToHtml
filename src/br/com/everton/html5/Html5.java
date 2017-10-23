@@ -59,6 +59,25 @@ public abstract class Html5 {
         setTagName(tagName);
         append(content);
     }
+    
+    /**
+     * special attribute?
+     */
+    private final List<String> specialAttribute = new ArrayList<>();
+    
+    public void addSpecialAttribute(String name) {
+        specialAttribute.add(name);
+    }
+    
+    public void addSpecialAttribute(String[] names) {
+        for (int i = 0; names.length > i; i++) {
+            addSpecialAttribute(names[i]);
+        }
+    }
+    
+    private String getSpecialAttribute() {
+        return String.join(" ", specialAttribute);
+    }
 
     /**
      * Specifies one or more classnames for an element (refers to a class in a
@@ -276,7 +295,8 @@ public abstract class Html5 {
 
         // hidden
         if (isHiddenAttribute()) {
-            sb.append("hidden ");
+            //sb.append("hidden ");
+            addSpecialAttribute("hidden");
         }
 
         // id
@@ -297,6 +317,11 @@ public abstract class Html5 {
         // custom
         if (!getCustomAttributes().isEmpty()) {
             sb.append(getCustomAttributes()).append(" ");
+        }
+        
+        // special
+        if (!getSpecialAttribute().isEmpty()) {
+            sb.append(getSpecialAttribute());
         }
 
         return sb.toString().trim();

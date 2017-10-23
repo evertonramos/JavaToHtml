@@ -46,11 +46,11 @@ public class Option extends Html5 {
     }
     
     public void setDisabled() {
-        
+        addSpecialAttribute("disabled");
     }
     
     public void setSelected() {
-        
+        addSpecialAttribute("selected");
     }
     
 }

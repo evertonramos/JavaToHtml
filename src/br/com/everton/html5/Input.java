@@ -208,5 +208,23 @@ public class Input extends Html5 {
         addCustomAttribute("placeholder", text);
     }
 
+    public void setDisabled() {
+        addSpecialAttribute("disabled");
+    }
+    
+    public void setChecked() {
+        addSpecialAttribute("checked");
+    }
+    
+    public void setReadonly() {
+        addSpecialAttribute("readonly");
+    }
+    
+    public void setRequired() {
+        addSpecialAttribute("required");
+    }
+    
+    
+    
     // https://www.w3schools.com/tags/tag_input.asp
 }

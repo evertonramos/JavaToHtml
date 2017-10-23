@@ -102,11 +102,11 @@ public class BootstrapFormHorizontal {
         return divFormGroup.toString();
     }
 
-    private static String getError(String inputId, String errorMessage) {
+    private static String getError(String id, String errorMessage) {
         P p = new P(errorMessage);
 
         p.addClassName("errors");
-        p.setIdAttribute("error_" + inputId);
+        p.setIdAttribute("error_" + id);
         p.addStyle("display", "none");
         p.addStyle("color", "red");
         p.addStyle("font-size", "1em");
@@ -131,6 +131,10 @@ public class BootstrapFormHorizontal {
 
         Input input = new Input();
         input.setType(Input.Type.TCheckbox);
+
+        if (checked) {
+            input.setChecked();
+        }
 
         if (!inputId.isEmpty()) {
             input.setIdAttribute(inputId);
@@ -158,14 +162,13 @@ public class BootstrapFormHorizontal {
     // color
     // date
     // datetimelocal
-    
+
     // email
     public static String getInputEmail(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage) {
         return getInput(Input.Type.TEmail, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage);
     }
-    
+
     // file
-    
     // hidden
     public static String getInputHidden(String inputId, String inputValue) {
         Input input = new Input();
@@ -192,7 +195,7 @@ public class BootstrapFormHorizontal {
     public static String getInputText(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage) {
         return getInput(Input.Type.TText, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage);
     }
-    
+
     // select
     public static String getSelect(String selectId, String selectLabel, Map<String, String> selectOptions, String selectValue, int leftColumn, int rightColumn, boolean error, String errorMessage) {
         // select
@@ -203,13 +206,17 @@ public class BootstrapFormHorizontal {
             select.setIdAttribute(selectId);
             select.setName(selectId);
         }
-        
+
         // options
         selectOptions.forEach((k, v) -> {
             Option o = new Option(v);
-            
+
             o.setValue(k);
-            
+
+            if (k.equals(selectValue)) {
+                o.setSelected();
+            }
+
             select.addOption(o);
         });
 
