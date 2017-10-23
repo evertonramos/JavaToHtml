@@ -30,6 +30,10 @@ import br.com.everton.html5.Label;
 import br.com.everton.html5.Option;
 import br.com.everton.html5.P;
 import br.com.everton.html5.Select;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -196,8 +200,8 @@ public class BootstrapFormHorizontal {
         return getInput(Input.Type.TText, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage);
     }
 
-    // select
-    public static String getSelect(String selectId, String selectLabel, Map<String, String> selectOptions, String selectValue, int leftColumn, int rightColumn, boolean error, String errorMessage) {
+    // select (Map)
+    public static String getSelect(String selectId, String selectLabel, boolean blankOption, Map<String, String> selectOptions, String selectValue, int leftColumn, int rightColumn, boolean error, String errorMessage) {
         // select
         Select select = new Select();
         select.addClassName("form-control");
@@ -206,19 +210,27 @@ public class BootstrapFormHorizontal {
             select.setIdAttribute(selectId);
             select.setName(selectId);
         }
+        
+        if(blankOption) {
+            Option o = new Option();
+            
+            select.addOption(o);
+        }
 
         // options
-        selectOptions.forEach((k, v) -> {
-            Option o = new Option(v);
+        if (selectOptions != null) {
+            selectOptions.forEach((k, v) -> {
+                Option o = new Option(v);
 
-            o.setValue(k);
+                o.setValue(k);
 
-            if (k.equals(selectValue)) {
-                o.setSelected();
-            }
+                if (k.equals(selectValue)) {
+                    o.setSelected();
+                }
 
-            select.addOption(o);
-        });
+                select.addOption(o);
+            });
+        }
 
         // divFormGroup
         Div divFormGroup = new Div();
@@ -256,5 +268,31 @@ public class BootstrapFormHorizontal {
         divFormGroup.append(div);
 
         return divFormGroup.toString();
+    }
+
+    // select (ResultSet)
+    public static String getSelect(String selectId, String selectLabel, boolean blankOption, ResultSet selectOptions, String selectValue, int leftColumn, int rightColumn, boolean error, String errorMessage) throws Exception {
+        Map<String, String> options = new LinkedHashMap<String, String>();
+
+        if (selectOptions != null) {
+            while (selectOptions.next()) {
+                options.put(selectOptions.getString(1), selectOptions.getString(2));
+            }
+        }
+
+        return getSelect(selectId, selectLabel, blankOption, options, selectValue, leftColumn, rightColumn, error, errorMessage);
+    }
+
+    // select (ArrayList)
+    public static String getSelect(String selectId, String selectLabel, boolean blankOption, ArrayList<String> selectOptions, String selectValue, int leftColumn, int rightColumn, boolean error, String errorMessage) throws Exception {
+        Map<String, String> options = new LinkedHashMap<String, String>();
+
+        if (selectOptions != null) {
+            selectOptions.forEach((v) -> {
+                options.put(v, v);
+            });
+        }
+
+        return getSelect(selectId, selectLabel, blankOption, options, selectValue, leftColumn, rightColumn, error, errorMessage);
     }
 }
