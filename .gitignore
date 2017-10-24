@@ -22,3 +22,9 @@
 hs_err_pid*
 /build/
 /dist/
+
+# Netbeans
+/nbproject/*
+
+# IntelliJ IDEA
+.idea/*
