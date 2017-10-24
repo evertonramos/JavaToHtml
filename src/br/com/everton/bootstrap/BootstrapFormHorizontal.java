@@ -32,7 +32,6 @@ import br.com.everton.html5.P;
 import br.com.everton.html5.Select;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -41,7 +40,19 @@ import java.util.Map;
  * @author evertonramos
  */
 public class BootstrapFormHorizontal {
+    
+    private static String getError(String id, String errorMessage, String errorClass, String errorPrefix) {
+        P p = new P(errorMessage);
 
+        p.addClassName(errorClass);
+        p.setIdAttribute(errorPrefix + id);
+        p.addStyle("display", "none");
+        p.addStyle("color", "red");
+        p.addStyle("font-size", "1em");
+
+        return p.toString();
+    }
+    
     public static Form getForm() {
         Form form = new Form();
         form.addClassName("form-horizontal");
@@ -49,7 +60,7 @@ public class BootstrapFormHorizontal {
         return form;
     }
 
-    private static String getInput(Input.Type type, String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage) {
+    private static String getInput(Input.Type type, String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
         // input
         Input input = new Input();
         input.setType(type);
@@ -98,7 +109,7 @@ public class BootstrapFormHorizontal {
         div.append(input);
 
         if ((error) && (!inputId.isEmpty())) {
-            div.append(getError(inputId, errorMessage));
+            div.append(getError(inputId, errorMessage, errorClass, errorPrefix));
         }
 
         divFormGroup.append(div);
@@ -106,21 +117,9 @@ public class BootstrapFormHorizontal {
         return divFormGroup.toString();
     }
 
-    private static String getError(String id, String errorMessage) {
-        P p = new P(errorMessage);
-
-        p.addClassName("errors");
-        p.setIdAttribute("error_" + id);
-        p.addStyle("display", "none");
-        p.addStyle("color", "red");
-        p.addStyle("font-size", "1em");
-
-        return p.toString();
-    }
-
     // button
     // checkbox
-    public static String getInputCheckbox(String inputId, String inputLabel, boolean checked, int leftColumn, int rightColumn, boolean error, String errorMessage) {
+    public static String getInputCheckbox(String inputId, String inputLabel, boolean checked, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
         Div divFormGroup = new Div();
         divFormGroup.addClassName("form-group");
 
@@ -156,7 +155,7 @@ public class BootstrapFormHorizontal {
         div.append(divCheckbox);
 
         if ((error) && (!inputId.isEmpty())) {
-            div.append(getError(inputId, errorMessage));
+            div.append(getError(inputId, errorMessage, errorClass, errorPrefix));
         }
 
         divFormGroup.append(div);
@@ -168,8 +167,8 @@ public class BootstrapFormHorizontal {
     // datetimelocal
 
     // email
-    public static String getInputEmail(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage) {
-        return getInput(Input.Type.TEmail, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage);
+    public static String getInputEmail(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
+        return getInput(Input.Type.TEmail, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix);
     }
 
     // file
@@ -191,17 +190,18 @@ public class BootstrapFormHorizontal {
     }
 
     // password
-    public static String getInputPassword(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage) {
-        return getInput(Input.Type.TPassword, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage);
+    public static String getInputPassword(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
+        return getInput(Input.Type.TPassword, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix);
     }
 
     // text
-    public static String getInputText(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage) {
-        return getInput(Input.Type.TText, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage);
+    public static String getInputText(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
+        return getInput(Input.Type.TText, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix);
     }
 
     // select (Map)
-    public static String getSelect(String selectId, String selectLabel, boolean blankOption, Map<String, String> selectOptions, String selectValue, int leftColumn, int rightColumn, boolean error, String errorMessage) {
+    // https://silviomoreto.github.io/bootstrap-select/
+    public static String getSelect(String selectId, String selectLabel, boolean blankOption, Map<String, String> selectOptions, String selectValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
         // select
         Select select = new Select();
         select.addClassName("form-control");
@@ -212,9 +212,7 @@ public class BootstrapFormHorizontal {
         }
         
         if(blankOption) {
-            Option o = new Option();
-            
-            select.addOption(o);
+            select.addOption(new Option());
         }
 
         // options
@@ -262,7 +260,7 @@ public class BootstrapFormHorizontal {
         div.append(select);
 
         if ((error) && (!selectId.isEmpty())) {
-            div.append(getError(selectId, errorMessage));
+            div.append(getError(selectId, errorMessage, errorClass, errorPrefix));
         }
 
         divFormGroup.append(div);
@@ -271,7 +269,7 @@ public class BootstrapFormHorizontal {
     }
 
     // select (ResultSet)
-    public static String getSelect(String selectId, String selectLabel, boolean blankOption, ResultSet selectOptions, String selectValue, int leftColumn, int rightColumn, boolean error, String errorMessage) throws Exception {
+    public static String getSelect(String selectId, String selectLabel, boolean blankOption, ResultSet selectOptions, String selectValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) throws Exception {
         Map<String, String> options = new LinkedHashMap<String, String>();
 
         if (selectOptions != null) {
@@ -280,11 +278,11 @@ public class BootstrapFormHorizontal {
             }
         }
 
-        return getSelect(selectId, selectLabel, blankOption, options, selectValue, leftColumn, rightColumn, error, errorMessage);
+        return getSelect(selectId, selectLabel, blankOption, options, selectValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix);
     }
 
     // select (ArrayList)
-    public static String getSelect(String selectId, String selectLabel, boolean blankOption, ArrayList<String> selectOptions, String selectValue, int leftColumn, int rightColumn, boolean error, String errorMessage) throws Exception {
+    public static String getSelect(String selectId, String selectLabel, boolean blankOption, ArrayList<String> selectOptions, String selectValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) throws Exception {
         Map<String, String> options = new LinkedHashMap<String, String>();
 
         if (selectOptions != null) {
@@ -293,6 +291,6 @@ public class BootstrapFormHorizontal {
             });
         }
 
-        return getSelect(selectId, selectLabel, blankOption, options, selectValue, leftColumn, rightColumn, error, errorMessage);
+        return getSelect(selectId, selectLabel, blankOption, options, selectValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix);
     }
 }
