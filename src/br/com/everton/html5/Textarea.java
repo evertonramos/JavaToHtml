@@ -29,12 +29,10 @@ package br.com.everton.html5;
  * @author evertonramos
  */
 public class Textarea extends Html5 {
+    private String name = "";
+    
     public Textarea() {
         super("textarea");
-    }
-    
-    public void setName(String name) {
-        addCustomAttribute("name", name);
     }
     
     public void setRows(int rows) {
@@ -45,6 +43,35 @@ public class Textarea extends Html5 {
         addCustomAttribute("cols", Integer.toString(cols));
     }
     
+    public void setName(String name) {
+        this.name = name;
+
+        addCustomAttribute("name", this.name);
+    }
+
+    public String getFor() {
+        return this.name;
+    }
+
+    public void setValue(String value) {
+        append(value);
+    }
+
+    public void setPlaceholder(String text) {
+        addCustomAttribute("placeholder", text);
+    }
+
+    public void setDisabled() {
+        addSpecialAttribute("disabled");
+    }
+    
+    public void setReadonly() {
+        addSpecialAttribute("readonly");
+    }
+    
+    public void setRequired() {
+        addSpecialAttribute("required");
+    }
     
     //https://www.w3schools.com/tags/tag_textarea.asp
 }

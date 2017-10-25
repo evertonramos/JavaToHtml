@@ -30,6 +30,7 @@ import br.com.everton.html5.Label;
 import br.com.everton.html5.Option;
 import br.com.everton.html5.P;
 import br.com.everton.html5.Select;
+import br.com.everton.html5.Textarea;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -292,5 +293,64 @@ public class BootstrapFormHorizontal {
         }
 
         return getSelect(selectId, selectLabel, blankOption, options, selectValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix);
+    }
+    
+    // textarea
+    public static String getTextarea(String textareaId, String textareaLabel, String textareaPlaceholder, String textareaValue, int rows, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
+        // textarea
+        Textarea textarea = new Textarea();
+        textarea.addClassName("form-control");
+        textarea.setRows(rows);
+        textarea.addStyle("resize", "none");
+
+        if (!textareaId.isEmpty()) {
+            textarea.setIdAttribute(textareaId);
+            textarea.setName(textareaId);
+        }
+
+        if (!textareaPlaceholder.isEmpty()) {
+            textarea.setPlaceholder(textareaPlaceholder);
+        }
+
+        if (!textareaValue.isEmpty()) {
+            textarea.setValue(textareaValue);
+        }
+
+        // divFormGroup
+        Div divFormGroup = new Div();
+        divFormGroup.addClassName("form-group");
+
+        // div
+        Div div = new Div();
+
+        // label
+        if (!textareaLabel.isEmpty()) {
+            Label label = new Label(textareaLabel);
+            label.addClassName("control-label");
+            label.addClassName("col-sm-" + leftColumn);
+
+            if (!textareaId.isEmpty()) {
+                label.setFor(textareaId);
+            }
+
+            divFormGroup.append(label);
+        } else {
+            if (leftColumn > 0) {
+                div.addClassName("col-sm-offset-" + leftColumn);
+            }
+        }
+
+        // div        
+        div.addClassName("col-sm-" + rightColumn);
+
+        div.append(textarea);
+
+        if ((error) && (!textareaId.isEmpty())) {
+            div.append(getError(textareaId, errorMessage, errorClass, errorPrefix));
+        }
+
+        divFormGroup.append(div);
+
+        return divFormGroup.toString();
     }
 }
