@@ -61,7 +61,7 @@ public class BootstrapFormHorizontal {
         return form;
     }
 
-    private static String getInput(Input.Type type, String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
+    private static String getInput(Input.Type type, String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix, boolean disabled) {
         // input
         Input input = new Input();
         input.setType(type);
@@ -78,6 +78,10 @@ public class BootstrapFormHorizontal {
 
         if (!inputValue.isEmpty()) {
             input.setValue(inputValue);
+        }
+        
+        if(disabled) {
+            input.setDisabled();
         }
 
         // divFormGroup
@@ -169,7 +173,7 @@ public class BootstrapFormHorizontal {
 
     // email
     public static String getInputEmail(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
-        return getInput(Input.Type.TEmail, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix);
+        return getInput(Input.Type.TEmail, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, false);
     }
 
     // file
@@ -192,12 +196,17 @@ public class BootstrapFormHorizontal {
 
     // password
     public static String getInputPassword(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
-        return getInput(Input.Type.TPassword, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix);
+        return getInput(Input.Type.TPassword, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, false);
     }
 
     // text
     public static String getInputText(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
-        return getInput(Input.Type.TText, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix);
+        return getInput(Input.Type.TText, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, false);
+    }
+    
+    // text (disabled)
+    public static String getInputTextDisabled(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
+        return getInput(Input.Type.TText, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, true);
     }
 
     // select (Map)
