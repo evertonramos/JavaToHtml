@@ -25,6 +25,7 @@ package br.com.everton.bootstrap;
 
 import br.com.everton.html5.Div;
 import br.com.everton.html5.Form;
+import br.com.everton.html5.Html5;
 import br.com.everton.html5.Input;
 import br.com.everton.html5.Label;
 import br.com.everton.html5.Option;
@@ -61,7 +62,7 @@ public class BootstrapFormHorizontal {
         return form;
     }
 
-    private static String getInput(Input.Type type, String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix, boolean disabled) {
+    private static String getInput(Input.Type type, String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix, boolean disabled, double min, double max, double step) {
         // input
         Input input = new Input();
         input.setType(type);
@@ -82,6 +83,14 @@ public class BootstrapFormHorizontal {
         
         if(disabled) {
             input.setDisabled();
+        }
+        
+        if(type.equals(Input.Type.TNumber)) {
+            input.setMin(min);
+            input.setMax(max);
+            input.setStep(step);
+            
+            input.setTextAlign(Html5.TextAlign.RIGHT);
         }
 
         // divFormGroup
@@ -173,7 +182,7 @@ public class BootstrapFormHorizontal {
 
     // email
     public static String getInputEmail(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
-        return getInput(Input.Type.TEmail, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, false);
+        return getInput(Input.Type.TEmail, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, false, 0, 0, 0);
     }
 
     // file
@@ -196,17 +205,22 @@ public class BootstrapFormHorizontal {
 
     // password
     public static String getInputPassword(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
-        return getInput(Input.Type.TPassword, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, false);
+        return getInput(Input.Type.TPassword, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, false, 0, 0, 0);
     }
 
     // text
     public static String getInputText(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
-        return getInput(Input.Type.TText, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, false);
+        return getInput(Input.Type.TText, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, false, 0, 0, 0);
     }
     
     // text (disabled)
     public static String getInputTextDisabled(String inputId, String inputLabel, String inputPlaceholder, String inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix) {
-        return getInput(Input.Type.TText, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, true);
+        return getInput(Input.Type.TText, inputId, inputLabel, inputPlaceholder, inputValue, leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, true, 0, 0, 0);
+    }
+
+    // number
+    public static String getInputNumber(String inputId, String inputLabel, String inputPlaceholder, double inputValue, int leftColumn, int rightColumn, boolean error, String errorMessage, String errorClass, String errorPrefix, double min, double max, double step) {
+        return getInput(Input.Type.TNumber, inputId, inputLabel, inputPlaceholder, Double.toString(inputValue), leftColumn, rightColumn, error, errorMessage, errorClass, errorPrefix, false, min, max, step);
     }
 
     // select (Map)

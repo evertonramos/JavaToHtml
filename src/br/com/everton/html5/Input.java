@@ -224,7 +224,17 @@ public class Input extends Html5 {
         addSpecialAttribute("required");
     }
     
+    public void setMax(double max) {
+        addCustomAttribute("max", Double.toString(max));
+    }
     
+    public void setMin(double min) {
+        addCustomAttribute("min", Double.toString(min));
+    }
+    
+    public void setStep(double step) {
+        addCustomAttribute("step", Double.toString(step));
+    }
     
     // https://www.w3schools.com/tags/tag_input.asp
 }
