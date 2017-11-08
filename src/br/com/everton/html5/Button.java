@@ -37,8 +37,38 @@ public class Button extends Html5 {
         super("button", content);
     }
     
-    public void setType(String type) {
-        addCustomAttribute("type", type);
+    /**
+     * The type attribute specifies the type of button.
+     */
+    public enum Type {
+        /**
+         * The button is a clickable button
+         */
+        TButton,
+        /**
+         * The button is a submit button (submits form-data)
+         */
+        TSubmit,
+        /**
+         * The button is a reset button (resets the form-data to its initial values)
+         */
+        TReset;
+
+        @Override
+        public String toString() {
+            switch (this) {
+                case TSubmit:
+                    return "submit";
+                case TReset:
+                    return "reset";
+                default:
+                    return "button";
+            }
+        }
+    }
+    
+    public void setType(Type type) {
+        addCustomAttribute("type", type.toString());
     }
     
 }
