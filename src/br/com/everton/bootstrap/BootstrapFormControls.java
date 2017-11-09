@@ -202,6 +202,11 @@ public class BootstrapFormControls {
     public static Input getInputNumber(String inputId, String inputPlaceholder, double inputValue, boolean disabled, double minNumber, double maxNumber, double stepNumber) {
         return getInput(Input.Type.TNumber, inputId, inputPlaceholder, Double.toString(inputValue), disabled, minNumber, maxNumber, stepNumber);
     }
+    
+    // date
+    public static Input getInputDate(String inputId, String inputPlaceholder, String inputValue, boolean disabled) {
+        return getInput(Input.Type.TDate, inputId, inputPlaceholder, inputValue, disabled, 0, 0, 0);
+    }
 
     // select (Map)
     // todo https://silviomoreto.github.io/bootstrap-select/

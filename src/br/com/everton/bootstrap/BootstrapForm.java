@@ -388,6 +388,19 @@ public class BootstrapForm {
     public void addInputNumber(String inputId, String textLabel, String inputPlaceholder, double inputValue, boolean disabled, double minNumber, double maxNumber, double stepNumber) {
         addInputNumber(inputId, textLabel, inputPlaceholder, inputValue, disabled, minNumber, maxNumber, stepNumber, "");
     }
+    
+    // date
+    public void addInputDate(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, String errorMessage) {
+        Label label = BootstrapFormControls.getFormGroupLabel(textLabel, inputId, getLabelColumnGrid(), isScreenReaderOnly());
+        Input input = BootstrapFormControls.getInputDate(inputId, inputPlaceholder, inputValue, disabled);
+        P error = BootstrapFormControls.getFormGroupError(inputId, errorMessage, getErrorClass(), getErrorPrefix());
+
+        addFormGroup(label, input, error);
+    }
+    
+    public void addInputDate(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled) {
+        addInputDate(inputId, textLabel, inputPlaceholder, inputValue, disabled, "");
+    }
 
     // textarea
     public void addTextarea(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, int rows, String errorMessage) {
