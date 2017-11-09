@@ -53,8 +53,6 @@ public class BootstrapForm {
     public void setInline() {
         this.form.addClassName("form-inline");
         this.formType = "form-inline";
-        this.labelColumnGrid = 0;
-        this.inputColumnGrid = 0;
         this.errors = false;
     }
 
@@ -86,7 +84,8 @@ public class BootstrapForm {
     }
 
     public void setLabelColumnGrid(int labelColumnGrid) {
-        this.labelColumnGrid = labelColumnGrid;
+        this.labelColumnGrid = Math.max(0, Math.min(12, labelColumnGrid));
+        this.inputColumnGrid = Math.min(this.inputColumnGrid, 12 - this.labelColumnGrid);
     }
 
     public int getInputColumnGrid() {
@@ -94,7 +93,8 @@ public class BootstrapForm {
     }
 
     public void setInputColumnGrid(int inputColumnGrid) {
-        this.inputColumnGrid = inputColumnGrid;
+        this.inputColumnGrid = Math.max(0, Math.min(12, inputColumnGrid));
+        this.labelColumnGrid = Math.min(this.labelColumnGrid, 12 - this.inputColumnGrid);
     }
 
     public boolean isScreenReaderOnly() {
