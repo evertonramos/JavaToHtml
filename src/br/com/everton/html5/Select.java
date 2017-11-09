@@ -45,4 +45,7 @@ public class Select extends Html5 {
         append(option);
     }
         
+    public void setDisabled() {
+        addSpecialAttribute("disabled");
+    }
 }

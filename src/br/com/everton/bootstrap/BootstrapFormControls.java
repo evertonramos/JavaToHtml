@@ -29,8 +29,14 @@ import br.com.everton.html5.Form;
 import br.com.everton.html5.Html5;
 import br.com.everton.html5.Input;
 import br.com.everton.html5.Label;
+import br.com.everton.html5.Option;
 import br.com.everton.html5.P;
+import br.com.everton.html5.Select;
 import br.com.everton.html5.Textarea;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
@@ -138,8 +144,26 @@ public class BootstrapFormControls {
         return input;
     }
 
-    private static Input getInputCheckbox() {
-        return new Input();
+    // checkbox
+    public static Input getInputCheckbox(String checkboxId, boolean checked, boolean disabled) {
+        // input
+        Input input = new Input();
+        input.setType(Input.Type.TCheckbox);
+
+        if (!checkboxId.isEmpty()) {
+            input.setIdAttribute(checkboxId);
+            input.setName(checkboxId);
+        }
+
+        if (checked) {
+            input.setChecked();
+        }
+
+        if (disabled) {
+            input.setDisabled();
+        }
+
+        return input;
     }
 
     // email
@@ -177,6 +201,69 @@ public class BootstrapFormControls {
     // number
     public static Input getInputNumber(String inputId, String inputPlaceholder, double inputValue, boolean disabled, double minNumber, double maxNumber, double stepNumber) {
         return getInput(Input.Type.TNumber, inputId, inputPlaceholder, Double.toString(inputValue), disabled, minNumber, maxNumber, stepNumber);
+    }
+
+    // select (Map)
+    // todo https://silviomoreto.github.io/bootstrap-select/
+    public static Select getSelect(String selectId, boolean blankOption, Map<String, String> selectOptions, String selectValue, boolean disabled) {
+        Select select = new Select();
+        select.addClassName("form-control");
+
+        if (!selectId.isEmpty()) {
+            select.setIdAttribute(selectId);
+            select.setName(selectId);
+        }
+
+        if (blankOption) {
+            select.addOption(new Option());
+        }
+        
+        if(disabled) {
+            select.setDisabled();
+        }
+
+        // options
+        if (selectOptions != null) {
+            selectOptions.forEach((k, v) -> {
+                Option o = new Option(v);
+
+                o.setValue(k);
+
+                if (k.equals(selectValue)) {
+                    o.setSelected();
+                }
+
+                select.addOption(o);
+            });
+        }
+
+        return select;
+    }
+
+    // select (ResultSet)
+    public static Select getSelect(String selectId, boolean blankOption, ResultSet selectOptions, String selectValue, boolean disabled) throws Exception {
+        Map<String, String> options = new LinkedHashMap<String, String>();
+
+        if (selectOptions != null) {
+            while (selectOptions.next()) {
+                options.put(selectOptions.getString(1), selectOptions.getString(2));
+            }
+        }
+
+        return getSelect(selectId, blankOption, options, selectValue, disabled);
+    }
+
+    // select (ArrayList)
+    public static Select getSelect(String selectId, boolean blankOption, ArrayList<String> selectOptions, String selectValue, boolean disabled) {
+        Map<String, String> options = new LinkedHashMap<String, String>();
+
+        if (selectOptions != null) {
+            selectOptions.forEach((v) -> {
+                options.put(v, v);
+            });
+        }
+
+        return getSelect(selectId, blankOption, options, selectValue, disabled);
     }
 
     // textarea
@@ -217,13 +304,11 @@ public class BootstrapFormControls {
         if (!buttonId.isEmpty()) {
             button.setIdAttribute(buttonId);
         }
-        
+
         button.addClassName("btn");
         button.addClassName("btn-" + buttonClass);
 
         return button;
     }
-
-    
 
 }

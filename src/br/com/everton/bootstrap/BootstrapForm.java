@@ -29,7 +29,11 @@ import br.com.everton.html5.Form;
 import br.com.everton.html5.Input;
 import br.com.everton.html5.Label;
 import br.com.everton.html5.P;
+import br.com.everton.html5.Select;
 import br.com.everton.html5.Textarea;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *
@@ -150,7 +154,7 @@ public class BootstrapForm {
 
         form.append(formGroup);
     }
-    
+
     private void addFormGroup(Label label, Textarea textarea, P error) {
         Div formGroup = BootstrapFormControls.getFormGroup();
 
@@ -168,6 +172,32 @@ public class BootstrapForm {
             formGroup.append(div);
         } else {
             formGroup.append(textarea);
+
+            if (isErrors()) {
+                formGroup.append(error);
+            }
+        }
+
+        form.append(formGroup);
+    }
+    
+    private void addFormGroup(Label label, Select select, P error) {
+        Div formGroup = BootstrapFormControls.getFormGroup();
+
+        formGroup.append(label);
+
+        if (isHorizontal()) {
+            Div div = BootstrapFormControls.getFormGroupDiv(getInputColumnGrid());
+
+            div.append(select);
+
+            if (isErrors()) {
+                div.append(error);
+            }
+
+            formGroup.append(div);
+        } else {
+            formGroup.append(select);
 
             if (isErrors()) {
                 formGroup.append(error);
@@ -194,12 +224,12 @@ public class BootstrapForm {
             form.append(button);
         }
     }
-    
+
     // default
     public void addButton(Button.Type type, String buttonValue) {
         addButton(type, "", buttonValue);
     }
-    
+
     public void addButton(Button.Type type, String buttonId, String buttonValue) {
         addButton(type, buttonId, buttonValue, "default");
     }
@@ -208,7 +238,7 @@ public class BootstrapForm {
     public void addButtonPrimary(Button.Type type, String buttonValue) {
         addButtonPrimary(type, "", buttonValue);
     }
-    
+
     public void addButtonPrimary(Button.Type type, String buttonId, String buttonValue) {
         addButton(type, buttonId, buttonValue, "primary");
     }
@@ -217,7 +247,7 @@ public class BootstrapForm {
     public void addButtonSecondary(Button.Type type, String buttonValue) {
         addButtonSecondary(type, "", buttonValue);
     }
-    
+
     public void addButtonSecondary(Button.Type type, String buttonId, String buttonValue) {
         addButton(type, buttonId, buttonValue, "secondary");
     }
@@ -226,7 +256,7 @@ public class BootstrapForm {
     public void addButtonSuccess(Button.Type type, String buttonValue) {
         addButtonSuccess(type, "", buttonValue);
     }
-    
+
     public void addButtonSuccess(Button.Type type, String buttonId, String buttonValue) {
         addButton(type, buttonId, buttonValue, "success");
     }
@@ -235,7 +265,7 @@ public class BootstrapForm {
     public void addButtonInfo(Button.Type type, String buttonValue) {
         addButtonInfo(type, "", buttonValue);
     }
-    
+
     public void addButtonInfo(Button.Type type, String buttonId, String buttonValue) {
         addButton(type, buttonId, buttonValue, "info");
     }
@@ -244,7 +274,7 @@ public class BootstrapForm {
     public void addButtonWarning(Button.Type type, String buttonValue) {
         addButtonWarning(type, "", buttonValue);
     }
-    
+
     public void addButtonWarning(Button.Type type, String buttonId, String buttonValue) {
         addButton(type, buttonId, buttonValue, "warning");
     }
@@ -253,7 +283,7 @@ public class BootstrapForm {
     public void addButtonDanger(Button.Type type, String buttonValue) {
         addButtonDanger(type, "", buttonValue);
     }
-    
+
     public void addButtonDanger(Button.Type type, String buttonId, String buttonValue) {
         addButton(type, buttonId, buttonValue, "danger");
     }
@@ -262,9 +292,44 @@ public class BootstrapForm {
     public void addButtonLink(Button.Type type, String buttonValue) {
         addButtonLink(type, "", buttonValue);
     }
-    
+
     public void addButtonLink(Button.Type type, String buttonId, String buttonValue) {
         addButton(type, buttonId, buttonValue, "link");
+    }
+
+    // checkbox
+    public void addInputCheckbox(String inputId, String textLabel, boolean checked, boolean disabled, String errorMessage) {
+        Input input = BootstrapFormControls.getInputCheckbox(inputId, checked, disabled);
+        P error = BootstrapFormControls.getFormGroupError(inputId, errorMessage, getErrorClass(), getErrorPrefix());
+
+        Label label = new Label();
+        label.append(input);
+        label.append(" " + textLabel);
+
+        Div divCheckbox = new Div();
+        divCheckbox.addClassName("checkbox");
+        divCheckbox.append(label);
+
+        if (isErrors()) {
+            divCheckbox.append(error);
+        }
+
+        if (isHorizontal()) {
+            Div div = BootstrapFormControls.getFormGroupDiv(12 - getLabelColumnGrid());
+            div.addClassName("col-sm-offset-" + getLabelColumnGrid());
+            div.append(divCheckbox);
+
+            Div formGroup = BootstrapFormControls.getFormGroup();
+            formGroup.append(div);
+
+            form.append(formGroup);
+        } else {
+            form.append(divCheckbox);
+        }
+    }
+    
+    public void addInputCheckbox(String inputId, String textLabel, boolean checked, boolean disabled) {
+        addInputCheckbox(inputId, textLabel, checked, disabled, "");
     }
 
     // email
@@ -275,16 +340,16 @@ public class BootstrapForm {
 
         addFormGroup(label, input, error);
     }
-    
+
     public void addInputEmail(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled) {
         addInputEmail(inputId, textLabel, inputPlaceholder, inputValue, disabled, "");
     }
-    
+
     // hidden
     public void addInputHidden(String inputId, String inputValue) {
         form.append(BootstrapFormControls.getInputHidden(inputId, inputValue));
     }
-    
+
     // password
     public void addInputPassword(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, String errorMessage) {
         Label label = BootstrapFormControls.getFormGroupLabel(textLabel, inputId, getLabelColumnGrid(), isScreenReaderOnly());
@@ -293,11 +358,11 @@ public class BootstrapForm {
 
         addFormGroup(label, input, error);
     }
-    
+
     public void addInputPassword(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled) {
         addInputPassword(inputId, textLabel, inputPlaceholder, inputValue, disabled, "");
     }
-    
+
     // text
     public void addInputText(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, String errorMessage) {
         Label label = BootstrapFormControls.getFormGroupLabel(textLabel, inputId, getLabelColumnGrid(), isScreenReaderOnly());
@@ -310,16 +375,16 @@ public class BootstrapForm {
     public void addInputText(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled) {
         addInputText(inputId, textLabel, inputPlaceholder, inputValue, disabled, "");
     }
-    
+
     // number
     public void addInputNumber(String inputId, String textLabel, String inputPlaceholder, double inputValue, boolean disabled, double minNumber, double maxNumber, double stepNumber, String errorMessage) {
         Label label = BootstrapFormControls.getFormGroupLabel(textLabel, inputId, getLabelColumnGrid(), isScreenReaderOnly());
-        Input input = BootstrapFormControls.getInputNumber(inputId, inputPlaceholder, inputValue, disabled, minNumber, maxNumber, stepNumber); 
+        Input input = BootstrapFormControls.getInputNumber(inputId, inputPlaceholder, inputValue, disabled, minNumber, maxNumber, stepNumber);
         P error = BootstrapFormControls.getFormGroupError(inputId, errorMessage, getErrorClass(), getErrorPrefix());
 
         addFormGroup(label, input, error);
     }
-    
+
     public void addInputNumber(String inputId, String textLabel, String inputPlaceholder, double inputValue, boolean disabled, double minNumber, double maxNumber, double stepNumber) {
         addInputNumber(inputId, textLabel, inputPlaceholder, inputValue, disabled, minNumber, maxNumber, stepNumber, "");
     }
@@ -327,16 +392,55 @@ public class BootstrapForm {
     // textarea
     public void addTextarea(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, int rows, String errorMessage) {
         Label label = BootstrapFormControls.getFormGroupLabel(textLabel, inputId, getLabelColumnGrid(), isScreenReaderOnly());
-        Textarea textarea = BootstrapFormControls.getTextarea(inputId, inputPlaceholder, inputValue, disabled, rows); 
+        Textarea textarea = BootstrapFormControls.getTextarea(inputId, inputPlaceholder, inputValue, disabled, rows);
         P error = BootstrapFormControls.getFormGroupError(inputId, errorMessage, getErrorClass(), getErrorPrefix());
 
         addFormGroup(label, textarea, error);
     }
-    
+
     public void addTextarea(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, int rows) {
         addTextarea(inputId, textLabel, inputPlaceholder, inputValue, disabled, rows, "");
     }
     
+    // select (Map)
+    public void addSelect(String selectId, String textLabel, boolean blankOption, Map<String, String> selectOptions, String selectValue, boolean disabled, String errorMessage) {
+        Label label = BootstrapFormControls.getFormGroupLabel(textLabel, selectId, getLabelColumnGrid(), isScreenReaderOnly());
+        Select select = BootstrapFormControls.getSelect(selectId, blankOption, selectOptions, selectValue, disabled);
+        P error = BootstrapFormControls.getFormGroupError(selectId, errorMessage, getErrorClass(), getErrorPrefix());
+        
+        addFormGroup(label, select, error);
+    }
+    
+    public void addSelect(String selectId, String textLabel, boolean blankOption, Map<String, String> selectOptions, String selectValue, boolean disabled) {
+        addSelect(selectId, textLabel, blankOption, selectOptions, selectValue, disabled, "");
+    }
+    
+    // select (ResultSet)
+    public void addSelect(String selectId, String textLabel, boolean blankOption, ResultSet selectOptions, String selectValue, boolean disabled, String errorMessage) throws Exception {
+        Label label = BootstrapFormControls.getFormGroupLabel(textLabel, selectId, getLabelColumnGrid(), isScreenReaderOnly());
+        Select select = BootstrapFormControls.getSelect(selectId, blankOption, selectOptions, selectValue, disabled);
+        P error = BootstrapFormControls.getFormGroupError(selectId, errorMessage, getErrorClass(), getErrorPrefix());
+        
+        addFormGroup(label, select, error);
+    }
+    
+    public void addSelect(String selectId, String textLabel, boolean blankOption, ResultSet selectOptions, String selectValue, boolean disabled) throws Exception {
+        addSelect(selectId, textLabel, blankOption, selectOptions, selectValue, disabled, "");
+    }
+    
+    // select (ArrayList)
+    public void addSelect(String selectId, String textLabel, boolean blankOption, ArrayList selectOptions, String selectValue, boolean disabled, String errorMessage) {
+        Label label = BootstrapFormControls.getFormGroupLabel(textLabel, selectId, getLabelColumnGrid(), isScreenReaderOnly());
+        Select select = BootstrapFormControls.getSelect(selectId, blankOption, selectOptions, selectValue, disabled);
+        P error = BootstrapFormControls.getFormGroupError(selectId, errorMessage, getErrorClass(), getErrorPrefix());
+        
+        addFormGroup(label, select, error);
+    }
+    
+    public void addSelect(String selectId, String textLabel, boolean blankOption, ArrayList selectOptions, String selectValue, boolean disabled) {
+        addSelect(selectId, textLabel, blankOption, selectOptions, selectValue, disabled, "");
+    }
+
     @Override
     public String toString() {
         return form.toString();
