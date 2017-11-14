@@ -211,30 +211,30 @@ public class Input extends Html5 {
     public void setDisabled() {
         addSpecialAttribute("disabled");
     }
-    
+
     public void setChecked() {
         addSpecialAttribute("checked");
     }
-    
+
     public void setReadonly() {
         addSpecialAttribute("readonly");
     }
-    
+
     public void setRequired() {
         addSpecialAttribute("required");
     }
-    
+
     public void setMax(double max) {
-        addCustomAttribute("max", Double.toString(max));
+        addCustomAttribute("max", (max == (long) max ? Long.toString((long) max) : Double.toString(max)));
     }
-    
+
     public void setMin(double min) {
-        addCustomAttribute("min", Double.toString(min));
+        addCustomAttribute("min", (min == (long) min ? Long.toString((long) min) : Double.toString(min)));
     }
-    
+
     public void setStep(double step) {
-        addCustomAttribute("step", Double.toString(step));
+        addCustomAttribute("step", (step == (long) step ? Long.toString((long) step) : Double.toString(step)));
     }
-    
+
     // https://www.w3schools.com/tags/tag_input.asp
 }

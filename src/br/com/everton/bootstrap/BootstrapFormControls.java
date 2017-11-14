@@ -200,9 +200,9 @@ public class BootstrapFormControls {
 
     // number
     public static Input getInputNumber(String inputId, String inputPlaceholder, double inputValue, boolean disabled, double minNumber, double maxNumber, double stepNumber) {
-        return getInput(Input.Type.TNumber, inputId, inputPlaceholder, Double.toString(inputValue), disabled, minNumber, maxNumber, stepNumber);
+        return getInput(Input.Type.TNumber, inputId, inputPlaceholder, (inputValue == (long) inputValue) ? Long.toString((long) inputValue) : Double.toString(inputValue), disabled, minNumber, maxNumber, stepNumber);
     }
-    
+
     // date
     public static Input getInputDate(String inputId, String inputPlaceholder, String inputValue, boolean disabled) {
         return getInput(Input.Type.TDate, inputId, inputPlaceholder, inputValue, disabled, 0, 0, 0);
@@ -222,8 +222,8 @@ public class BootstrapFormControls {
         if (blankOption) {
             select.addOption(new Option());
         }
-        
-        if(disabled) {
+
+        if (disabled) {
             select.setDisabled();
         }
 
