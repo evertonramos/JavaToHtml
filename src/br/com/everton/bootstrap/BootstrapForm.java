@@ -78,6 +78,10 @@ public class BootstrapForm {
     public Form getForm() {
         return this.form;
     }
+    
+    public void setMethod(Form.Method method) {
+        this.form.setMethod(method);
+    }
 
     public int getLabelColumnGrid() {
         return labelColumnGrid;
