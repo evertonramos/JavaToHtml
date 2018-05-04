@@ -25,6 +25,7 @@ package br.com.everton.bootstrap;
 
 import br.com.everton.html5.Button;
 import br.com.everton.html5.Div;
+import br.com.everton.html5.Fieldset;
 import br.com.everton.html5.Form;
 import br.com.everton.html5.Input;
 import br.com.everton.html5.Label;
@@ -456,6 +457,18 @@ public class BootstrapForm {
     
     public void addSelect(String selectId, String textLabel, boolean blankOption, ArrayList selectOptions, String selectValue, boolean disabled) {
         addSelect(selectId, textLabel, blankOption, selectOptions, selectValue, disabled, "");
+    }
+    
+    // fieldset
+    public void startFieldset(String legend) {
+        
+        form.append("<div style='border-style: solid; border-width: 1px; border-color: #cccccc; padding: 10px; margin-bottom: 20px;'>");
+        form.append("<h3>" + legend + "</h3>");
+    }
+    
+    public void finishFieldset() {
+        //form.append("</fieldset>");
+        form.append("</div>");
     }
 
     @Override
