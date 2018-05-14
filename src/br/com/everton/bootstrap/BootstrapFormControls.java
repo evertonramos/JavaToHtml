@@ -98,16 +98,24 @@ public class BootstrapFormControls {
         return div;
     }
 
-    public static P getFormGroupError(String id, String errorMessage, String errorClass, String errorPrefix) {
+    public static P getFormGroupError(String id, String errorMessage, String errorClass, String errorPrefix, boolean display) {
         P p = new P(errorMessage);
 
         p.addClassName(errorClass);
         p.setIdAttribute(errorPrefix + id);
-        p.addStyle("display", "none");
+
+        if (!display) {
+            p.addStyle("display", "none");
+        }
+
         p.addStyle("color", "red");
         p.addStyle("font-size", "1em");
 
         return p;
+    }
+
+    public static P getFormGroupError(String id, String errorMessage, String errorClass, String errorPrefix) {
+        return getFormGroupError(id, errorMessage, errorClass, errorPrefix, false);
     }
 
     private static Input getInput(Input.Type type, String inputId, String inputPlaceholder, String inputValue, boolean disabled, double minNumber, double maxNumber, double stepNumber) {

@@ -369,16 +369,20 @@ public class BootstrapForm {
     }
 
     // text
-    public void addInputText(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, String errorMessage) {
+    public void addInputText(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, String errorMessage, boolean displayErrorMessage) {
         Label label = BootstrapFormControls.getFormGroupLabel(textLabel, inputId, getLabelColumnGrid(), isScreenReaderOnly());
         Input input = BootstrapFormControls.getInputText(inputId, inputPlaceholder, inputValue, disabled);
-        P error = BootstrapFormControls.getFormGroupError(inputId, errorMessage, getErrorClass(), getErrorPrefix());
+        P error = BootstrapFormControls.getFormGroupError(inputId, errorMessage, getErrorClass(), getErrorPrefix(), displayErrorMessage);
 
         addFormGroup(label, input, error);
     }
+    
+    public void addInputText(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, String errorMessage) {
+        addInputText(inputId, textLabel, inputPlaceholder, inputValue, disabled, errorMessage, false);
+    }
 
     public void addInputText(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled) {
-        addInputText(inputId, textLabel, inputPlaceholder, inputValue, disabled, "");
+        addInputText(inputId, textLabel, inputPlaceholder, inputValue, disabled, "", false);
     }
 
     // number
@@ -408,16 +412,20 @@ public class BootstrapForm {
     }
 
     // textarea
-    public void addTextarea(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, int rows, String errorMessage) {
+    public void addTextarea(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, int rows, String errorMessage, boolean displayErrorMessage) {
         Label label = BootstrapFormControls.getFormGroupLabel(textLabel, inputId, getLabelColumnGrid(), isScreenReaderOnly());
         Textarea textarea = BootstrapFormControls.getTextarea(inputId, inputPlaceholder, inputValue, disabled, rows);
-        P error = BootstrapFormControls.getFormGroupError(inputId, errorMessage, getErrorClass(), getErrorPrefix());
+        P error = BootstrapFormControls.getFormGroupError(inputId, errorMessage, getErrorClass(), getErrorPrefix(), displayErrorMessage);
 
         addFormGroup(label, textarea, error);
     }
+    
+    public void addTextarea(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, int rows, String errorMessage) {
+        addTextarea(inputId, textLabel, inputPlaceholder, inputValue, disabled, rows, errorMessage, false);
+    }
 
     public void addTextarea(String inputId, String textLabel, String inputPlaceholder, String inputValue, boolean disabled, int rows) {
-        addTextarea(inputId, textLabel, inputPlaceholder, inputValue, disabled, rows, "");
+        addTextarea(inputId, textLabel, inputPlaceholder, inputValue, disabled, rows, "", false);
     }
     
     // select (Map)
