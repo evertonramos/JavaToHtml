@@ -118,7 +118,7 @@ public class Main {
         html.append(head);
         html.append(body);
 
-        System.out.println(html.getHtml5(false));
+        System.out.println(html.getHtml5(true));
 
         System.out.println("elapsed time (μs): " + (System.currentTimeMillis() - millis));
     }
